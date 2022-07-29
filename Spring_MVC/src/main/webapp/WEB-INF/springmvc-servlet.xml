@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- En este fichero contiene la declaración de los beans necesarios para utilizar Spring MVC.
+		
+		1.- En primer lugar debemos indicarlos los tags permitos en el archivo:
+			beans xmlns:"", xmlns:xsi="", xmln:context""....
+		
+		2.- Le indicaremos los paquetes que deberá scanear para buscar los bean anotados con la siguientes anotaciones:
+			(@Component, @Controller, @Service, @Repositoy.)
+			Deberemos de indicarselo con -> context:component-scan y con el atributo base-package le diremos donde debe
+			de realizar la busqueda de los componentes. 
+		
+		2.2.- Debemos de incluir el soporte para obtenes las anotaciones propias de Spring-MVC:
+			mvc:annotation-driven -> @Controller, @RequestMapping, @RequestBody, @ResponseBody, etc.
+		
+		3.- Por último le deberemos de indicar un ViewResolver que es el encaragao de buscar las vistas JSP.
+			Deberemos de configurar dos propiedas:
+				- Prefix: Se le indica el director donde se almacenaran todas las vistas.
+				- Suffix: Se le indica el tipo de pagina que será.		-->
+		
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+			http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context 
+			http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/mvc 
+			http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<context:component-scan base-package="curso.spring.mvc.controller" />
+	<mvc:annotation-driven />	
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/views/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</beans>
