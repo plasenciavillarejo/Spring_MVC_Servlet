@@ -18,4 +18,20 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
+<!-- 
+Apartir de la especificación 3.0 del API de Servlets existen varias formas de como llevar el rastreo de la sessión 
+(session tracking mode). Las 3 formas son:
+    1-. COOKIE
+    2.- URL
+    3.- SSL.
+    
+Esa es la razón por la cual aparece el ID de la Sesión en la URL (jsessionid). En este caso para que no se agregue este 
+parámetro en la URL, hay que cambiar la configuración del session tracking mode para que el ID de la Sesión se guarde en COOKIES.
+
+Para esta configuración debes realizar lo siguiente: -->
+
+    <session-config> 
+       <tracking-mode>COOKIE</tracking-mode> 
+    </session-config>
+
 </web-app>
