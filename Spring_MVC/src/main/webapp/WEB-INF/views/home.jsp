@@ -11,12 +11,27 @@
 	<h1>Listado de peliculas.</h1>
 
 	<!-- Lista ordenada de nuestras películas-->
-
-	<ul>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Título</th>
+				<th>Duración</th>
+				<th>Clasifiación</th>
+				<th>Genero</th>
+			</tr>
+		</thead>
+		<tbody>
 		<c:forEach items="${peliculas}" var="pelicula">
-			<li>${pelicula}</li>
+			<tr>
+				<td>${pelicula.id}</td>
+				<td>${pelicula.titulo}</td>
+				<td>${pelicula.duracion} min</td>
+				<td>${pelicula.clasificacion}</td>
+				<td>${pelicula.genero}</td>
+			</tr>
 		</c:forEach>
-	</ul>
-
+		</tbody>
+	</table>
 </body>
 </html>
