@@ -12,6 +12,8 @@ public class Pelicula {
 	public String imagen = "cinema.png"; // Imágen por defecto.
 	private Date fechaEstreno;
 	private String estatus="Activa";
+	
+	
 	public int getId() {
 		return id;
 	}
