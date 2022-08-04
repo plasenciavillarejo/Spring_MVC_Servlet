@@ -40,8 +40,8 @@
 	</bean>
 	
 	
-	
-	
+	<!-- Le indicamos en el lugar donde se alojara los recursos estáticos. -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
 	
 	
 	
