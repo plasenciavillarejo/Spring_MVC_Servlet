@@ -63,11 +63,28 @@
 							<td>${pelicula.duracion}min</td>
 							<td>${pelicula.clasificacion}</td>
 							<td>${pelicula.genero}</td>
+							
 							<!-- Accedemos a la imágenes que están ubicada dentro de la carpeta resources -->
 							<td><img src="${urlPublic}/images/${pelicula.imagen}" width="100" height="100"></td>
+							
 							<!--  Damos formato apoyandonos en tag "fmt" que nos proporciona spirng -->
 							<td><fmt:formatDate value="${pelicula.fechaEstreno}" pattern="dd-MM-yyyy"/></td>
-							<td>${pelicula.estatus}</td>
+							
+							<!-- Aplicamos el c:choosse para dar estilos a una pelicula si está activa o no -->
+							<td>
+								<c:choose>
+									<c:when test="${pelicula.estatus=='Activa'}">
+										<span class="badge bg-success">ACTIVA</span>
+									</c:when>
+									<c:otherwise>
+										<span class="badge bg-danger">INACTIVA</span>
+									</c:otherwise>
+								
+								
+								</c:choose>
+							
+							
+							</td>
 						</tr>
 					</c:forEach>
 				</tbody>
