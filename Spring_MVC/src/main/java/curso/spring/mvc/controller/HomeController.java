@@ -60,10 +60,11 @@ public class HomeController {
 
 			Pelicula pelicula1 = new Pelicula();
 			pelicula1.setId(1);
-			pelicula1.setTitulo("El país de nunca jamas");
+			pelicula1.setTitulo("La bella y la bestía.");
 			pelicula1.setDuracion(145);
 			pelicula1.setClasificacion("B");
 			pelicula1.setGenero("Adventura");
+			pelicula1.setImagen("estreno6.png");
 			pelicula1.setFechaEstreno(formato.parse("02-05-2017"));
 
 			listaPeliculas.add(pelicula1);
@@ -79,15 +80,25 @@ public class HomeController {
 			listaPeliculas.add(pelicula2);
 
 			Pelicula pelicula3 = new Pelicula();
-			pelicula3.setId(2);
+			pelicula3.setId(3);
 			pelicula3.setTitulo("Kong la isla calavera");
 			pelicula3.setDuracion(129);
 			pelicula3.setClasificacion("C");
 			pelicula3.setGenero("Acción");
 			pelicula3.setFechaEstreno(formato.parse("06-06-2017"));
-			pelicula3.setImagen("kong.jpg");
+			pelicula3.setImagen("estreno4.jpg");
 			pelicula3.setEstatus("Inactiva");
 			listaPeliculas.add(pelicula3);
+			
+			Pelicula pelicula4 = new Pelicula();
+			pelicula4.setId(4);
+			pelicula4.setTitulo("Contratiempo");
+			pelicula4.setDuracion(145);
+			pelicula4.setClasificacion("A");
+			pelicula4.setGenero("Suspense");
+			pelicula4.setFechaEstreno(formato.parse("10-10-2021"));
+			pelicula4.setImagen("estreno7.png");
+			listaPeliculas.add(pelicula4);
 
 		} catch (Exception e) {
 			System.out.println("Ha fallado la insercción de peliculas");
