@@ -82,10 +82,9 @@
             <div class="form-group">
               <label for="fecha">Fecha: </label>
               <select id="fecha" name="fecha" class="form-control">
-                <option value="01-05-2017">01-05-2017</option>
-                <option value="02-05-2017">02-05-2017</option>
-                <option value="03-05-2017">03-05-2017</option>
-                <option value="04-05-2017">04-05-2017</option>                
+                <c:forEach items="${fechas}" var="fecha">
+                	<option value="${fecha}">${fecha}</option>
+                </c:forEach>                
               </select>
             </div>            
             <button type="submit" class="btn btn-primary">Filtrar</button>
@@ -111,8 +110,14 @@
               <span class="label label-default">${pelicula.clasificacion}</span>
               <span class="label label-default">${pelicula.duracion} min</span>
               <span class="label label-default">${pelicula.genero}</span>
-            </h4>         
-            <p><a class="btn btn-sm btn-primary" href="detail/${pelicula.id}/${fechaBusqueda}" role="button">Consulta Horarios &raquo;</a></p>
+            </h4>  
+                   
+			<%--
+			<p><a class="btn btn-sm btn-primary" href="detail/${pelicula.id}/${fechaBusqueda}" role="button">Consulta Horarios &raquo;</a></p>
+			 --%>
+			 <%-- Enviamos la petición en formato @RequestParam --%>
+			 <p><a class="btn btn-sm btn-primary" href="detail?id=${pelicula.id}&fecha=${fechaBusqueda}" role="button">Consulta Horarios &raquo;</a></p>
+          	
           </div>
           	</c:forEach>
         </div>

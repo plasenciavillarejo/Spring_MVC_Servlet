@@ -5,18 +5,22 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.taglibs.standard.tag.common.core.Util;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import curso.spring.mvc.model.Pelicula;
+import curso.spring.mvc.util.Utileria;
 
 @Controller
 public class HomeController {
-
+	
 	// Buenas Prácticas.
 
 	// Redirecciones a Página Webs.
@@ -37,14 +41,19 @@ public class HomeController {
 
 		List<Pelicula> peliculas = getLista();
 		
+		
+		/*Obtenemos la lista de las fechas de la clase Utils*/
+		List<String> fechas = Utileria.getNextDays(4);
+		
 		/* Pasamos por parámetros la fecha actual de las películas para buscarlas al pulsar el boton
 			Consultar Horarios. */
+		model.addAttribute("fechas", fechas);
 		model.addAttribute("fechaBusqueda", FORMATOFECHAS.format(new Date()));
 		model.addAttribute("peliculas", peliculas);
 
 		return VISTAHOME;
 	}
-
+/*
 	@RequestMapping(value = "/detail/{id}/{fecha}", method = RequestMethod.GET)
 	public String mostrarDetalle(@PathVariable("id") int id,@PathVariable("fecha") String fechaPeliculas,Model model) {
 		
@@ -61,7 +70,18 @@ public class HomeController {
 
 		return VISTADETALLE;
 	}
+*/
+	/* Utilizando los parámetros con @RequestParam*/
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	public String mostrarDetalle(@RequestParam("id") int id,@RequestParam("fecha") String fechaPeliculas,Model model) {
+		
+		System.out.println("Utilizando @RequestParam en una etiqueta <a href=\"detail?id=${pelicula.id}&fecha=${fechaBusqueda}\" /> ");
+		System.out.println("Buscando horarios para la pelicula: " + id);
+		System.out.println("Para la fecha: " + fechaPeliculas);
 
+		return VISTADETALLE;
+	}
+	
 	// Método para crear una lista de forma manual.
 
 	private List<Pelicula> getLista() {
