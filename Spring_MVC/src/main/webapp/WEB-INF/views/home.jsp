@@ -22,6 +22,7 @@
 
 <!-- Añadimos la url para acceder a la carpeta resources donde se ubican los archivos estáticos. -->
 	<spring:url value="/resources" var="urlPublic" />
+	
 
 	<link href="${urlPublic}/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
     <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
@@ -111,7 +112,7 @@
               <span class="label label-default">${pelicula.duracion} min</span>
               <span class="label label-default">${pelicula.genero}</span>
             </h4>         
-            <p><a class="btn btn-sm btn-primary" href="#" role="button">Consulta Horarios &raquo;</a></p>
+            <p><a class="btn btn-sm btn-primary" href="detail/${pelicula.id}/${fechaBusqueda}" role="button">Consulta Horarios &raquo;</a></p>
           </div>
           	</c:forEach>
         </div>

@@ -1,12 +1,14 @@
 package curso.spring.mvc.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -21,6 +23,10 @@ public class HomeController {
 	public static final String VISTAHOME = "home";
 	public static final String VISTADETALLE = "detalle";
 
+	
+	// Variable global para permitir dar formato a las fechas
+	private static final SimpleDateFormat FORMATOFECHAS = new SimpleDateFormat("dd-MM-yyyy");
+	
 	/*
 	 * @RequestMapping(value = "/home", method = RequestMethod.GET) public String
 	 * goHome() { return VISTAHOME; }
@@ -30,14 +36,21 @@ public class HomeController {
 	public String mostrarPrincipal(Model model) {
 
 		List<Pelicula> peliculas = getLista();
-
+		
+		/* Pasamos por parámetros la fecha actual de las películas para buscarlas al pulsar el boton
+			Consultar Horarios. */
+		model.addAttribute("fechaBusqueda", FORMATOFECHAS.format(new Date()));
 		model.addAttribute("peliculas", peliculas);
 
 		return VISTAHOME;
 	}
 
-	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public String mostrarDetalle(Model model) {
+	@RequestMapping(value = "/detail/{id}/{fecha}", method = RequestMethod.GET)
+	public String mostrarDetalle(@PathVariable("id") int id,@PathVariable("fecha") String fechaPeliculas,Model model) {
+		
+		System.out.println("Buscando horarios para la pelicula: " + id);
+		System.out.println("Para la fecha: " + fechaPeliculas);
+		
 		String tituloPelicula = "Rápido y Furiosos.";
 		int duracion = 136;
 		double precioEntrada = 50;
