@@ -99,6 +99,17 @@ public class HomeController {
 			pelicula4.setFechaEstreno(formato.parse("10-10-2021"));
 			pelicula4.setImagen("estreno7.png");
 			listaPeliculas.add(pelicula4);
+			
+			Pelicula pelicula5 = new Pelicula();
+			pelicula5.setId(5);
+			pelicula5.setTitulo("Life: Vida Inteligentes");
+			pelicula5.setDuracion(167);
+			pelicula5.setClasificacion("C");
+			pelicula5.setGenero("Miedo");
+			pelicula5.setFechaEstreno(formato.parse("10-06-2019"));
+			pelicula5.setImagen("estreno5.png");
+			listaPeliculas.add(pelicula5);
+			
 
 		} catch (Exception e) {
 			System.out.println("Ha fallado la insercción de peliculas");
