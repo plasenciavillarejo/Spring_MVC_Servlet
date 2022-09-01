@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!-- Da formato a los archivos JSP (Fechas, Números, etc ...)-->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
 <!-- Incluimos el tags lib propios de spring -->
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
@@ -20,9 +18,13 @@
     <meta name="author" content="">
     <title>Cine-Plasencia | Bienvenido</title>
 
-<!-- Añadimos la url para acceder a la carpeta resources donde se ubican los archivos estáticos. -->
+
+	<!-- URLS -->
+	<!-- #### -->
+	<!-- Añadimos la url para acceder a la carpeta resources donde se ubican los archivos estáticos. -->
 	<spring:url value="/resources" var="urlPublic" />
 	
+	<spring:url value="/search" var="urlSearch" />
 
 	<link href="${urlPublic}/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
     <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
@@ -74,25 +76,34 @@
       </div>
       <!-- /.carousel -->
 	<!-- ############ -->
-	
-      <div class="row page-header">          
-        <div class="col-lg-12">         
-          <h2 class="text text-center"><span class="label label-success">EN CARTELERA</span></h2>          
-          <form class="form-inline" action="#" method="post">
-            <div class="form-group">
-              <label for="fecha">Fecha: </label>
-              <select id="fecha" name="fecha" class="form-control">
-                <c:forEach items="${fechas}" var="fecha">
-                	<option value="${fecha}">${fecha}</option>
-                </c:forEach>                
-              </select>
-            </div>            
-            <button type="submit" class="btn btn-primary">Filtrar</button>
-          </form>
-        </div>
-      </div>
 
-      <!-- Marketing messaging -->
+		<div class="row page-header">
+			<div class="col-lg-12">
+				<h2 class="text text-center">
+					<span class="label label-success">EN CARTELERA</span>
+				</h2>
+				<form class="form-inline" action="${urlSearch}" method="post">
+					<div class="form-group">
+						<label for="fecha">Fecha: </label> <select id="fecha" name="fecha"
+							class="form-control">
+							<c:forEach items="${fechas}" var="fecha">
+								<c:choose>
+									<c:when test="${fechaBusqueda eq fecha}">
+										<option value="${fecha}" selected>${fecha}</option>
+									</c:when>
+									<c:otherwise>
+										<option value="${fecha}">${fecha}</option>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+						</select>
+					</div>
+					<button type="submit" class="btn btn-primary">Filtrar</button>
+				</form>
+			</div>
+		</div>
+
+		<!-- Marketing messaging -->
       <div class="container marketing">
 
         <div class="row">

@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.apache.taglibs.standard.tag.common.core.Util;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ public class HomeController {
 	
 	// Buenas Prácticas.
 
+	private final static Logger LOGGER = Logger.getAnonymousLogger();
 	// Redirecciones a Página Webs.
 	public static final String VISTAHOME = "home";
 	public static final String VISTADETALLE = "detalle";
@@ -53,7 +55,30 @@ public class HomeController {
 
 		return VISTAHOME;
 	}
-/*
+
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	public String buscar(@RequestParam("fecha") String fecha, Model model) {
+
+		
+		LOGGER.info("Entrando por el método /search");
+		
+		/* Obtenemos la lista de las fechas de la clase Utils */
+		List<String> fechas = Utileria.getNextDays(4);
+
+		List<Pelicula> peliculas = getLista();	
+		
+		model.addAttribute("fechas", fechas);
+		model.addAttribute("fechaBusqueda", fecha);
+		model.addAttribute("peliculas", peliculas);
+
+		return VISTAHOME;
+	}
+	
+	
+	/* ################### INICIO ######################   */
+	/* ### Mismo Métodos Utiliznado de diferente forma ### */
+	
+	/*
 	@RequestMapping(value = "/detail/{id}/{fecha}", method = RequestMethod.GET)
 	public String mostrarDetalle(@PathVariable("id") int id,@PathVariable("fecha") String fechaPeliculas,Model model) {
 		
@@ -70,7 +95,9 @@ public class HomeController {
 
 		return VISTADETALLE;
 	}
-*/
+
+	 */
+	
 	/* Utilizando los parámetros con @RequestParam*/
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public String mostrarDetalle(@RequestParam("id") int id,@RequestParam("fecha") String fechaPeliculas,Model model) {
@@ -81,6 +108,10 @@ public class HomeController {
 
 		return VISTADETALLE;
 	}
+	
+	/* ################### FIN ######################   */
+	
+	
 	
 	// Método para crear una lista de forma manual.
 
