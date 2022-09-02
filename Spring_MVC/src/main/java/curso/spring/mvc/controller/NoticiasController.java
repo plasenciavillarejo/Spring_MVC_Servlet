@@ -37,7 +37,7 @@ public class NoticiasController {
 		noticia.setDetalle(detalle);
 		
 		
-		LOGGER.info("La noticia es " + noticia);
+		LOGGER.info("El título de la noticia es " + noticia.getTitulo());
 		
 		return VISTAFORMULARIONOTICIAS;
 	}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   		http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context 
+			http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 1.- Este fichero es el encargado de agregar las capas de servicio y la capa de datos tanto los beans como la inyección de las dependencias 
+		como la configuración de acceso a la BBDD. -->
+	
+	<!-- 2.- Spring al arrancar la aplicación va a escanear automaticamente todas las clases que estén dentro de este paquete y automaticamente todas las clases 
+		que contenga la anotacíon @Service va a crear una nueva instancia. -->
+	<context:component-scan base-package="curso.spring.mvc.serviceImpl" />
+
+</beans>
