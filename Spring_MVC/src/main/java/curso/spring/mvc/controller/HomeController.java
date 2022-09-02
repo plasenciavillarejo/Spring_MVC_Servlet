@@ -24,7 +24,7 @@ public class HomeController {
 	
 	// Buenas Prácticas.
 
-	private final static Logger LOGGER = Logger.getAnonymousLogger();
+	private static final Logger LOGGER = Logger.getAnonymousLogger();
 	// Redirecciones a Página Webs.
 	public static final String VISTAHOME = "home";
 	public static final String VISTADETALLE = "detalle";
@@ -38,7 +38,7 @@ public class HomeController {
 	 * goHome() { return VISTAHOME; }
 	 */
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = {"/", "/inicio"}, method = RequestMethod.GET)
 	public String mostrarPrincipal(Model model) {
 
 		List<Pelicula> peliculas = getLista();
