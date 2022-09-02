@@ -88,4 +88,16 @@ public class PeliculasServiceImpl implements IPeliculasService{
 		return listaPeliculas;
 	}
 
+
+	@Override
+	public Pelicula buscarPorId(int id) {
+		
+		for(Pelicula peli: listaPeliculas) {
+			if(peli.getId() == id) {
+				return peli;
+			}
+		}
+		return null;
+	}
+
 }

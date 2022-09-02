@@ -123,11 +123,13 @@
               <span class="label label-default">${pelicula.genero}</span>
             </h4>  
                    
-			<%--
+			
 			<p><a class="btn btn-sm btn-primary" href="detail/${pelicula.id}/${fechaBusqueda}" role="button">Consulta Horarios &raquo;</a></p>
-			 --%>
+			
 			 <%-- Enviamos la petición en formato @RequestParam --%>
+			<%--
 			 <p><a class="btn btn-sm btn-primary" href="detail?id=${pelicula.id}&fecha=${fechaBusqueda}" role="button">Consulta Horarios &raquo;</a></p>
+			  --%>
           	
           </div>
           	</c:forEach>

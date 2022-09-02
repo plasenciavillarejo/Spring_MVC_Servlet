@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -79,27 +80,28 @@ public class HomeController {
 	/* ################### INICIO ######################   */
 	/* ### Mismo Métodos Utiliznado de diferente forma ### */
 	
-	/*
+	
 	@RequestMapping(value = "/detail/{id}/{fecha}", method = RequestMethod.GET)
 	public String mostrarDetalle(@PathVariable("id") int id,@PathVariable("fecha") String fechaPeliculas,Model model) {
 		
 		System.out.println("Buscando horarios para la pelicula: " + id);
 		System.out.println("Para la fecha: " + fechaPeliculas);
 		
-		String tituloPelicula = "Rápido y Furiosos.";
-		int duracion = 136;
-		double precioEntrada = 50;
-
-		model.addAttribute("tituloPelicula", tituloPelicula);
-		model.addAttribute("duracion", duracion);
-		model.addAttribute("precioEntrada", precioEntrada);
-
+		Pelicula pelicula = null;
+		try {
+			pelicula = servicioPelicula.buscarPorId(id);
+			model.addAttribute("pelicula", pelicula);
+			
+		}catch (Exception e) {
+			LOGGER.info("Ha fallao la busqueda de la película" + e.getMessage());
+		}
 		return VISTADETALLE;
 	}
 
-	 */
+	 
 	
 	/* Utilizando los parámetros con @RequestParam*/
+	/*
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public String mostrarDetalle(@RequestParam("id") int id,@RequestParam("fecha") String fechaPeliculas,Model model) {
 		
@@ -109,6 +111,8 @@ public class HomeController {
 
 		return VISTADETALLE;
 	}
+	
+	*/
 	
 	/* ################### FIN ######################   */
 	

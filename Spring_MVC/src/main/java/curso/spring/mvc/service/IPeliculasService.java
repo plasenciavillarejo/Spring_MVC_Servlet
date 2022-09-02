@@ -7,4 +7,6 @@ import curso.spring.mvc.model.Pelicula;
 public interface IPeliculasService {
 
 	List<Pelicula> buscarTodas();
+	Pelicula buscarPorId(int id);
+	
 }
