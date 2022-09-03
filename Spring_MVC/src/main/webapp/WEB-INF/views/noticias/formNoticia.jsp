@@ -26,8 +26,6 @@
 	<spring:url value="/resources" var="urlPublic" />
 	<spring:url value="/noticias/save" var="urlForm"/>
 	
-	
-
 	<link href="${urlPublic}/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
     <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
 

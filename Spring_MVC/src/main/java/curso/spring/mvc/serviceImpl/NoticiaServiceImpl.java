@@ -14,7 +14,7 @@ public class NoticiaServiceImpl implements INoticiaService{
 	
 	@Override
 	public void guardar(Noticia noticia) {
-		System.out.println("Procedemos a guardar la noticia con los siguientes parámetros:" + noticia);
+		System.out.println("Procedemos a guardar la noticia con los siguientes parámetros:" + noticia.getTitulo());
 	}
 
 }

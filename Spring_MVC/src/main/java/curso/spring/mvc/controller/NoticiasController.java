@@ -31,21 +31,21 @@ public class NoticiasController {
 		return VISTAFORMULARIONOTICIAS;
 	}
 	
-	@PostMapping(value= "/save")
-	public String guardar(@RequestParam("titulo") String titulo, @RequestParam("estatus") String estatus, 
-			@RequestParam("detalle") String detalle, Model model) {
+	@PostMapping(value = "/save")
+	public String guardar(Noticia noticia, Model model) {
+
+		LOGGER.info("Se procede a guardar la noticia.");
+		LOGGER.debug("");
+		LOGGER.error("sdfasdf");
+		LOGGER.isInfoEnabled();
 		
-		
-		Noticia noticia = new Noticia();
-		noticia.setTitulo(titulo);
-		noticia.setEstatus(estatus);
-		noticia.setDetalle(detalle);
-		
-		noticiaService.guardar(noticia);
-		
-		LOGGER.info("El título de la noticia es " + noticia.getTitulo());
-		
-		
+		try {
+			noticiaService.guardar(noticia);
+		} catch (Exception e) {
+			LOGGER.info("No se ha podido guardar la noticia debido al siguiente error: " + e);
+		}
+		LOGGER.info("Se ha guardado corretamente la noticia, el título de la noticia es " + noticia.getTitulo());
+
 		return VISTAFORMULARIONOTICIAS;
 	}
 	
