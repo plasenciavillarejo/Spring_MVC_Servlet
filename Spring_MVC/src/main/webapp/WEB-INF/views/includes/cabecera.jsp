@@ -7,6 +7,8 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 
+<spring:url value="/" var="volverAtras" />
+
 <!-- Incluimos la cabecera. -->
 
 	<!-- Fixed navbar -->
@@ -20,7 +22,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="/">My Cine-Plasencia</a>
+				<a class="navbar-brand" href="${volverAtras}">My Cine-Plasencia</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">

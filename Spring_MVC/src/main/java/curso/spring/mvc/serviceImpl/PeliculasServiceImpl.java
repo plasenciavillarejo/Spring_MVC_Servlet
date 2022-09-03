@@ -16,7 +16,7 @@ public class PeliculasServiceImpl implements IPeliculasService{
 	
 	public PeliculasServiceImpl() {
 		
-		System.out.println("Verificando que la instancia creada es correcta.");
+		System.out.println("Verificando que la instancia PeliculasServiceImpl.java creada es correcta.");
 		
 		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
 
