@@ -2,6 +2,8 @@ package curso.spring.mvc.model;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Pelicula {
 
 	public int id;
@@ -10,6 +12,8 @@ public class Pelicula {
 	public String clasificacion;
 	public String genero;
 	public String imagen = "cinema.png"; // Imágen por defecto.
+	
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private Date fechaEstreno;
 	private String estatus="Activa";
 	

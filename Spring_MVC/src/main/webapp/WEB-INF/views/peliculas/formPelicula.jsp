@@ -40,11 +40,30 @@
 
     <div class="container theme-showcase" role="main">
 
-      <div class="page-header">
-	<h3 class="blog-title"><span class="label label-success">Datos de la Pelicula</span></h3>
-      </div>
+		<div class="page-header">
+			<h3 class="blog-title">
+				<span class="label label-success">Datos de la Pelicula</span>
+			</h3>
+		</div>
 
-      <form action="${guardarPelicula}" method="post">
+		<!-- Agregamos validacíon en los campos de los formularios -->
+		<!-- pelicula sería nuestro objeto de modelo Pelicula -> "pelicula"  -->
+		<spring:hasBindErrors name="pelicula">
+			<div class="alert alert-danger" role='alert'>
+				Debe corregir los siguientes errores:
+				<ul>
+					<c:forEach items="${errors.allErrors}" var="error">
+						<li><spring:message message="${error}"></spring:message>
+						</li>
+					</c:forEach>
+				</ul>
+			</div>
+
+
+		</spring:hasBindErrors>
+
+
+		<form action="${guardarPelicula}" method="post">
         <div class="row">
           <div class="col-sm-3">
             <div class="form-group">
@@ -171,7 +190,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
       $(function () {
-          $("#fechaEstreno").datepicker({dateFormat: 'dd-mm-yyyy'});
+          $("#fechaEstreno").datepicker({dateFormat: 'dd-mm-yy'});
         }
       );
     </script>

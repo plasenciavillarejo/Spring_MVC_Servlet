@@ -100,4 +100,10 @@ public class PeliculasServiceImpl implements IPeliculasService{
 		return null;
 	}
 
+
+	@Override
+	public void insertar(Pelicula pelicula) {
+		listaPeliculas.add(pelicula);
+	}
+
 }
