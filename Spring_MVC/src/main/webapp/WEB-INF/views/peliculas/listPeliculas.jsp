@@ -23,7 +23,7 @@
 <!-- #### -->
 <spring:url value="/peliculas/save" var="guardarPelicula" />
 <spring:url value="/peliculas/create" var="crearPeliculas" />
-
+<spring:url value="/" var="volverAtras"/>
 
 </head>
 
@@ -47,7 +47,9 @@
 			
 			<div class="panel-body">
 				<a href="${crearPeliculas}" class="btn btn-success" role="button"
-					title="Nueva Pelicula">Nueva</a><br> <br>
+					title="Nueva Pelicula">Nueva</a>
+				<a href="${volverAtras}" type="button" class="btn btn-info">Volver</a>
+					<br> <br>
 
 
 				<div class="table-responsive">
@@ -101,32 +103,5 @@
 	<!-- /container -->
 
 </body>
-
-
-<script type="text/javascript">
-
-var mensajeConfirmacion = '${mensajeConfirmacion}';
-	
-		if(mensajeConfirmacion !== ""){
-			console.log("dfdgfdf");
-			setTimeout(function() {
-				$("#alerta").fadeOut(1500);
-			}, 3000);
-		};
-	
-	
-//<div class="content">Hola, voy a desaparecer en 3 segundos!</div>
-//<div class="content2" style="display:none;">Hola, soy un nuevo div!</div>
-// 	$(document).ready(function() {
-// 	    setTimeout(function() {
-// 	        $(".content").fadeOut(1500);
-// 	    },3000);
-	 
-// 	    setTimeout(function() {
-// 	        $(".content2").fadeIn(1500);
-// 	    },6000);
-// 	});
-	
-</script>
 
 </html>

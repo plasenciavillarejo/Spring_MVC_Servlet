@@ -22,7 +22,8 @@
 	<!-- URLS -->
 	<!-- #### -->
 	<spring:url value="/peliculas/save" var="guardarPelicula" />
-
+	<spring:url value="/peliculas/listarPeliculas" var="volverAtras"></spring:url>
+	
   </head>
 
   <body>
@@ -34,12 +35,15 @@
 
     <div class="container theme-showcase" role="main">
 
-		<div class="page-header">
-			<h3 class="blog-title">
-				<span class="label label-success">Datos de la Pelicula</span>
-			</h3>
-		</div>
-
+				<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="blog-title">
+					<span class="label label-success">Datos de la Pelicula</span>
+				</h3>
+			</div>
+		
+		
+		<div class="panel-body">
 		<!-- Agregamos validacíon en los campos de los formularios -->
 		<!-- pelicula sería nuestro objeto de modelo Pelicula -> "pelicula"  -->
 		<spring:hasBindErrors name="pelicula">
@@ -164,8 +168,12 @@
         -->
         
         <button type="submit" class="btn btn-danger" >Guardar</button>
+        
+		 <a href="${volverAtras}" type="button" class="btn btn-info">Volver</a>
+        
       </form> 
-
+      </div>
+		</div>
       <hr class="featurette-divider">
 
       <!-- FOOTER -->

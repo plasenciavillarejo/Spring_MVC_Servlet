@@ -23,6 +23,7 @@
 <!-- URLS -->
 <!-- #### -->
 <spring:url value="/banners/create" var="crearBanner" />
+<spring:url value="/" var="volverAtras"/>
 
 </head>
 
@@ -46,8 +47,11 @@
 
 			<div class="panel-body">
 				<a href="${crearBanner}" class="btn btn-success" role="button"
-					title="Nueva Pelicula">Nuevo Banner</a><br> <br>
+					title="Nueva Pelicula">Nuevo Banner</a>
 
+				<a href="${volverAtras}" type="button" class="btn btn-info">Volver</a>
+
+				<br> <br>
 				<div class="table-responsive">
 					<table class="table table-hover table-striped table-bordered">
 						<tr>
@@ -77,6 +81,7 @@
 						</tr>
 						</c:forEach>
 					</table>
+					
 				</div>
 			</div>
 		</div>

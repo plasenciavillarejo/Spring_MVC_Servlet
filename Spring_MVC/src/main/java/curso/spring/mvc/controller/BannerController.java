@@ -25,8 +25,8 @@ public class BannerController {
 
 	private static final String MOSTRARBANNERS = "/banners/listBanners";
 	private static final String CREACIONBANNER = "/banners/formBanner";
-	
-	public static final String REEDIRECCIONBANNERS = "/banners/index";
+	private static final String REEDIRECCIONBANNERS = "/banners/index";
+	private static final String VOLVERATRAS = "/banners/index";
 	
 	@Autowired
 	private IBannerService bannerService;
@@ -46,32 +46,37 @@ public class BannerController {
 		return CREACIONBANNER;
 	}
 	
-	@PostMapping(value="/save")
-	public String save(Banner banner,BindingResult result, RedirectAttributes flashAttributes,@RequestParam(value = "archivoImagen") MultipartFile file, 
-			HttpServletRequest request) {
-		
-		if(result.hasErrors()) {
+	@PostMapping(value = "/save")
+	public String save(Banner banner, BindingResult result, RedirectAttributes flashAttributes,
+			@RequestParam(value = "archivoImagen") MultipartFile file, HttpServletRequest request) {
+
+		if (result.hasErrors()) {
 			System.out.println("El formulario contiene errores");
 			return CREACIONBANNER;
 		}
-		
+
 		try {
-			
-			if(!file.isEmpty()) {
+
+			if (!file.isEmpty()) {
 				String nombreArchivo = Utileria.guardarImagen(request, file);
 				banner.setArchivo(nombreArchivo);
 			}
-				
+
 			bannerService.insertar(banner);
-			
+
 			flashAttributes.addFlashAttribute("mensajeConfirmacion", "El Banner se ha almacenado correctamente");
-			
-			}catch (Exception e) {
-				System.out.println("No se ha podido almacenar correctamente el banner debido al siguiente error: " + e.getMessage());
-			}
-		
-		
-		return "redirect:"+REEDIRECCIONBANNERS;
+
+		} catch (Exception e) {
+			System.out.println(
+					"No se ha podido almacenar correctamente el banner debido al siguiente error: " + e.getMessage());
+		}
+
+		return "redirect:" + REEDIRECCIONBANNERS;
+	}
+	
+	@GetMapping(value = "/volver")
+	public String volverAtras() {
+		return VOLVERATRAS;
 	}
 	
 }

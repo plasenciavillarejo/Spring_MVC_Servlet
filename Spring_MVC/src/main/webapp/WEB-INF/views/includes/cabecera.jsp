@@ -15,6 +15,7 @@
 
 <!-- Añadimos la url para acceder a la carpeta resources donde se ubican los archivos estáticos. -->
 <spring:url value="/resources" var="urlPublic" />
+
 <link href="${urlPublic}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
 <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">

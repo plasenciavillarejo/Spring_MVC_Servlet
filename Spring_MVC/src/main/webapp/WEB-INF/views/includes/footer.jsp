@@ -36,6 +36,17 @@ var mensajeConfirmacion = '${mensajeConfirmacion}';
 				$("#alerta").fadeOut(1500);
 			}, 3000);
 		};
-	
+
+		//<div class="content">Hola, voy a desaparecer en 3 segundos!</div>
+		//<div class="content2" style="display:none;">Hola, soy un nuevo div!</div>
+//		 	$(document).ready(function() {
+//		 	    setTimeout(function() {
+//		 	        $(".content").fadeOut(1500);
+//		 	    },3000);
+			 
+//		 	    setTimeout(function() {
+//		 	        $(".content2").fadeIn(1500);
+//		 	    },6000);
+//		 	});
 	
 </script>
