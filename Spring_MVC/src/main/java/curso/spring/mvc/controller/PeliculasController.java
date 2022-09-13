@@ -25,6 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import curso.spring.mvc.model.Pelicula;
 import curso.spring.mvc.service.IPeliculasService;
+import curso.spring.mvc.util.Utileria;
 
 @Controller
 @RequestMapping("/peliculas")
@@ -32,7 +33,7 @@ public class PeliculasController {
 
 	@Autowired
 	private IPeliculasService peliculasService;
-	
+		
 	public static final String FORMPELICULA = "peliculas/formPelicula";
 	public static final String MOSTRARPELICULAS ="/peliculas/listPeliculas";
 	
@@ -70,7 +71,7 @@ public class PeliculasController {
 		try {
 			
 		if(!file.isEmpty()) {
-			String nombreImagen = guardarImagen(request, file);
+			String nombreImagen = Utileria.guardarImagen(request, file);
 			pelicula.setImagen(nombreImagen);
 		}
 			
@@ -105,29 +106,6 @@ public class PeliculasController {
 	}
 	
 	
-	/* Método que se encarga de subir imágenes */
-	
-	public String guardarImagen(HttpServletRequest request, MultipartFile multipart) {
-		
-		// Se obtiene el nombre original del archivo.
-		String nombreOriginal = multipart.getOriginalFilename();
-		
-		// Se procede a obtener la ruta ABSOLUTA del directorio donde se almacenará las imágenes.
-		String rutaFinal = request.getServletContext().getRealPath("/resources/images/");
-		
-		try {
-			// Se forma el nombre del archivo
-			File imageFile = new File(rutaFinal + nombreOriginal);
-			
-			// Se procede a guardar fisicamente la imágen dentro de el pc
-			multipart.transferTo(imageFile);
-			return nombreOriginal;
-			
-		}catch (Exception e) {
-			System.out.println("Se ha producido un error al intentar guardar la imagen" + e.getMessage());
-			return null;
-		}
-	}
 	
 	
 	

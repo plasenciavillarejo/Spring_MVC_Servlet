@@ -136,7 +136,7 @@
         <div class="page-header">
             <h3 class="blog-title"><span class="label label-success">Detalles</span></h3>
         </div>
-
+ 
         <div class="row">
           <div class="col-sm-3">
             <div class="form-group">
