@@ -24,8 +24,6 @@
 	
 	<spring:url value="/search" var="urlSearch" />
 
-	<link href="${urlPublic}/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
-    <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
 
 	</head>
 
@@ -131,10 +129,5 @@
 
 		</div> <!-- /container -->
 
-		<!-- Bootstrap core JavaScript
-		================================================== -->
-		<!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
-    <script src="${urlPublic}/bootstrap/js/bootstrap.min.js"></script> 
 	</body>
 </html>

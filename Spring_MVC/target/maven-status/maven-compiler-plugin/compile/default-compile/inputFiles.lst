@@ -1,10 +1,14 @@
 /Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/util/Utileria.java
 /Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/service/IPeliculasService.java
-/Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/service/INoticiaService.java
+/Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/controller/BannerController.java
+/Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/model/Banner.java
+/Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/service/IBannerService.java
+/Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/serviceImpl/BannerServiceImpl.java
 /Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/controller/PeliculasController.java
-/Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/serviceImpl/NoticiaServiceImpl.java
 /Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/controller/NoticiasController.java
 /Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/controller/HomeController.java
 /Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/serviceImpl/PeliculasServiceImpl.java
-/Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/model/Noticia.java
 /Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/model/Pelicula.java
+/Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/service/INoticiaService.java
+/Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/serviceImpl/NoticiaServiceImpl.java
+/Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/model/Noticia.java

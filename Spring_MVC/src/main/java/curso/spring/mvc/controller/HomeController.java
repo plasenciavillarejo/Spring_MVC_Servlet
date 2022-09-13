@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import curso.spring.mvc.model.Banner;
 import curso.spring.mvc.model.Pelicula;
+import curso.spring.mvc.service.IBannerService;
 import curso.spring.mvc.service.IPeliculasService;
 import curso.spring.mvc.util.Utileria;
 
@@ -23,6 +25,9 @@ public class HomeController {
 	
 	@Autowired
 	private IPeliculasService servicioPelicula;
+	
+	@Autowired
+	private IBannerService bannerService;
 	
 	// Buenas Prácticas.
 
@@ -45,7 +50,7 @@ public class HomeController {
 	public String mostrarPrincipal(Model model) {
 
 		List<Pelicula> peliculas = servicioPelicula.buscarTodas();
-		
+		List<Banner> banners = bannerService.mostrarCarrousel();
 		
 		/*Obtenemos la lista de las fechas de la clase Utils*/
 		List<String> fechas = Utileria.getNextDays(4);
@@ -55,6 +60,7 @@ public class HomeController {
 		model.addAttribute("fechas", fechas);
 		model.addAttribute("fechaBusqueda", FORMATOFECHAS.format(new Date()));
 		model.addAttribute("peliculas", peliculas);
+		model.addAttribute("banners", banners);
 
 		return VISTAHOME;
 	}

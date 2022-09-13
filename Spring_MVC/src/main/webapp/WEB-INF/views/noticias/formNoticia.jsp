@@ -19,15 +19,10 @@
 <meta name="author" content="">
 <title>Creacion de Noticias</title>
 
-	<!-- URLS -->
-	<!-- #### -->
-	<!-- Añadimos la url para acceder a la carpeta resources donde se ubican los archivos estáticos. -->
+<!-- URLS -->
+<!-- #### -->
+<spring:url value="/noticias/save" var="urlForm"/>
 	
-	<spring:url value="/resources" var="urlPublic" />
-	<spring:url value="/noticias/save" var="urlForm"/>
-	
-	<link href="${urlPublic}/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
-    <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
 
 </head>
 
@@ -82,13 +77,6 @@
 	</div>
 	<!-- /container -->
 
-	    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> 
-    <script src="${urlPublic}/bootstrap/js/bootstrap.min.js"></script>
-	<script src="${urlPublic}/tinymce/tinymce.min.js"></script>
-	
 	<script>
       tinymce.init({
           selector: '#detalle',

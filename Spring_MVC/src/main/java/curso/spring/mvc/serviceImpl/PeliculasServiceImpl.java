@@ -30,7 +30,7 @@ public class PeliculasServiceImpl implements IPeliculasService{
 			pelicula1.setClasificacion("B");
 			pelicula1.setGenero("Adventura");
 			pelicula1.setImagen("estreno6.png");
-			pelicula1.setFechaEstreno(formato.parse("02-05-2017"));
+			pelicula1.setFechaEstreno(formato.parse("17-09-2022"));
 
 			listaPeliculas.add(pelicula1);
 

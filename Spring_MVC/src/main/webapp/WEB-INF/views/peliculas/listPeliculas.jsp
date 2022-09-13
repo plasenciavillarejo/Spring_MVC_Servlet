@@ -21,16 +21,9 @@
 
 <!-- URLS -->
 <!-- #### -->
-<!-- Añadimos la url para acceder a la carpeta resources donde se ubican los archivos estáticos. -->
-<spring:url value="/resources" var="urlPublic" />
 <spring:url value="/peliculas/save" var="guardarPelicula" />
 <spring:url value="/peliculas/create" var="crearPeliculas" />
 
-
-<link href="${urlPublic}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
-<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
-<link href="${urlPublic}/css/style.css" rel="stylesheet">
 
 </head>
 
@@ -107,13 +100,6 @@
 	</div>
 	<!-- /container -->
 
-	<!-- Bootstrap core JavaScript
-    ================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="${urlPublic}/bootstrap/js/bootstrap.min.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </body>
 
 
