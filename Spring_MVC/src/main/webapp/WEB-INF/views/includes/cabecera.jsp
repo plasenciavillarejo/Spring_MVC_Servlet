@@ -8,6 +8,9 @@
 
 
 <spring:url value="/" var="volverAtras" />
+<spring:url value="/peliculas/listarPeliculas" var="listarPeliculas" />
+
+
 
 <!-- Incluimos la cabecera. -->
 
@@ -26,6 +29,7 @@
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
+					<li><a href="${listarPeliculas}">Listar Peliculas</a></li>
 					<li><a href="#">Acerca</a></li>
 					<li><a href="#">Login</a></li>
 				</ul>

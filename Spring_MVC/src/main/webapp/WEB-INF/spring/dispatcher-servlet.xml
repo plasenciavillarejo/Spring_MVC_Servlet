@@ -48,9 +48,16 @@
 	</bean>
 	
 	
-	<!-- Le indicamos en el lugar donde se alojara los recursos estáticos. -->
+	<!-- 4.- Le indicamos en el lugar donde se alojara los recursos estáticos. -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	
 	
+	<!-- 5.- Configuración para permitir la subida de archivos tanto en Windows como en Unix.
+		Debemos declarar un Bean para soporte de Multipart (upload file). Spring MVC ya provee la clase StandardServletMultipartResolver que es una implementación
+		MultipartResolver en la especificación Servlet 3.0. 
+			Nota: Para poder hacer uso de ello, debemos trabar en la versión de apache tomcat 7.0 o superior -->
+	
+	<bean id="multipartResolver"
+	class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
 	
 </beans>
