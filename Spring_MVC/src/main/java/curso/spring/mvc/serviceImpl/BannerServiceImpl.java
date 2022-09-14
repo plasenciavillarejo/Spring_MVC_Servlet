@@ -6,8 +6,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import curso.spring.mvc.controller.NoticiasController;
 import curso.spring.mvc.model.Banner;
 import curso.spring.mvc.service.IBannerService;
 
@@ -15,9 +18,10 @@ import curso.spring.mvc.service.IBannerService;
 public class BannerServiceImpl implements IBannerService{
 
 	private static List<Banner> listarBanners= null;
+	public static final Logger LOGGER = LoggerFactory.getLogger(NoticiasController.class);
 	
 	public BannerServiceImpl() throws ParseException {
-		System.out.println("Verificando que la instancia BannerServiceImpl.java creada es correcta.");
+		LOGGER.info("Verificando que la instancia BannerServiceImpl.java creada es correcta.");
 		
 		Date date = new Date();
 		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");

@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -40,6 +42,9 @@ public class PeliculasController {
 	// Redirecciona al método @GetMapping(value="/listarPeliculas")
 	public static final String REEDIRECCIONPELICULAS = "/peliculas/listarPeliculas";
 	
+	public static final Logger LOGGER = LoggerFactory.getLogger(NoticiasController.class);
+
+	
 	@GetMapping(value="/listarPeliculas")
 	public String mostrarIndex(Model model) {
 		List<Pelicula> listarPeliculas = peliculasService.buscarTodas();
@@ -58,15 +63,15 @@ public class PeliculasController {
 
 		/*
 		 * for(ObjectError error: result.getAllErrors()) {
-		 * System.out.println("El formulario contiene un error/es." + error); }
+		 * LOGGER.info("El formulario contiene un error/es." + error); }
 		 */
 
 		if (result.hasErrors()) {
-			System.out.println("El formulario contiene errores.");
+			LOGGER.info("El formulario contiene errores.");
 			return FORMPELICULA;
 		}
 		
-		System.out.println("Recibimos el objeto película:" + pelicula);		
+		LOGGER.info("Recibimos el objeto película:" + pelicula);		
 		
 		try {
 			
@@ -88,7 +93,7 @@ public class PeliculasController {
 		flashAttributes.addFlashAttribute("mensajeConfirmacion", "La pelicula se ha almacenado correctamente");
 		
 		}catch (Exception e) {
-			System.out.println("NO se ha podido almacenar correctamente la pelicula debido al siguiente error: " + e.getMessage());
+			LOGGER.info("NO se ha podido almacenar correctamente la pelicula debido al siguiente error: " + e.getMessage());
 		}
 		
 		

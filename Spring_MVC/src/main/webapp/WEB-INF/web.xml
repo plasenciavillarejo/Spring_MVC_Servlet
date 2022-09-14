@@ -76,4 +76,17 @@
 	<!-- #################################################################################################################### -->
 
 
+	<!--  ### Configuración Log4j2 ### -->
+	<!-- Referencia al fichero log4j2.xml -->
+
+    <context-param>
+        <param-name>log4jConfiguration</param-name>
+        <param-value>classpath:log4j2.xml</param-value>
+<!--         <param-value>file:///D:/conf/myLogging.xml</param-value> -->
+    </context-param>
+
+    
+	<!-- #################################################################################################################### -->
+	
+
 </web-app>

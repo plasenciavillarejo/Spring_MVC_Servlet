@@ -35,9 +35,6 @@ public class NoticiasController {
 	public String guardar(Noticia noticia, Model model) {
 
 		LOGGER.info("Se procede a guardar la noticia.");
-		LOGGER.debug("");
-		LOGGER.error("sdfasdf");
-		LOGGER.isInfoEnabled();
 		
 		try {
 			noticiaService.guardar(noticia);

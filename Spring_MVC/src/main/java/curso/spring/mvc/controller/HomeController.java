@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,7 @@ public class HomeController {
 	// Buenas Prácticas.
 
 	public static final Logger LOGGER = LoggerFactory.getLogger(NoticiasController.class);
+	
 	
 	// Redirecciones a Página Webs.
 	public static final String VISTAHOME = "home";
@@ -70,7 +72,6 @@ public class HomeController {
 
 		
 		LOGGER.info("Entrando por el método /search");
-		
 		/* Obtenemos la lista de las fechas de la clase Utils */
 		List<String> fechas = Utileria.getNextDays(4);
 
@@ -91,8 +92,8 @@ public class HomeController {
 	@RequestMapping(value = "/detail/{id}/{fecha}", method = RequestMethod.GET)
 	public String mostrarDetalle(@PathVariable("id") int id,@PathVariable("fecha") String fechaPeliculas,Model model) {
 		
-		System.out.println("Buscando horarios para la pelicula: " + id);
-		System.out.println("Para la fecha: " + fechaPeliculas);
+		LOGGER.info("Buscando horarios para la pelicula: " + id);
+		LOGGER.info("Para la fecha: " + fechaPeliculas);
 		
 		Pelicula pelicula = null;
 		try {
@@ -112,9 +113,9 @@ public class HomeController {
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public String mostrarDetalle(@RequestParam("id") int id,@RequestParam("fecha") String fechaPeliculas,Model model) {
 		
-		System.out.println("Utilizando @RequestParam en una etiqueta <a href=\"detail?id=${pelicula.id}&fecha=${fechaBusqueda}\" /> ");
-		System.out.println("Buscando horarios para la pelicula: " + id);
-		System.out.println("Para la fecha: " + fechaPeliculas);
+		LOGGER.info("Utilizando @RequestParam en una etiqueta <a href=\"detail?id=${pelicula.id}&fecha=${fechaBusqueda}\" /> ");
+		LOGGER.info("Buscando horarios para la pelicula: " + id);
+		LOGGER.info("Para la fecha: " + fechaPeliculas);
 
 		return VISTADETALLE;
 	}

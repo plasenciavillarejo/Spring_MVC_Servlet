@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +30,8 @@ public class BannerController {
 	private static final String REEDIRECCIONBANNERS = "/banners/index";
 	private static final String VOLVERATRAS = "/banners/index";
 	
+	public static final Logger LOGGER = LoggerFactory.getLogger(NoticiasController.class);
+	
 	@Autowired
 	private IBannerService bannerService;
 	
@@ -51,7 +55,7 @@ public class BannerController {
 			@RequestParam(value = "archivoImagen") MultipartFile file, HttpServletRequest request) {
 
 		if (result.hasErrors()) {
-			System.out.println("El formulario contiene errores");
+			LOGGER.info("El formulario contiene errores");
 			return CREACIONBANNER;
 		}
 
@@ -67,7 +71,7 @@ public class BannerController {
 			flashAttributes.addFlashAttribute("mensajeConfirmacion", "El Banner se ha almacenado correctamente");
 
 		} catch (Exception e) {
-			System.out.println(
+			LOGGER.info(
 					"No se ha podido almacenar correctamente el banner debido al siguiente error: " + e.getMessage());
 		}
 
