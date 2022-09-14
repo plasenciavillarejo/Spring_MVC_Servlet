@@ -45,14 +45,14 @@
 						<div class="col-sm-5">
 							<div class="form-group">
 								<label for="titulo">Titulo</label> <input type="text"
-									class="form-control" name="titulo" id="titulo" required="true" />
+									class="form-control" name="titulo" id="titulo" required="required"/>
 							</div>
 						</div>
 
 						<div class="col-sm-4">
 							<div class="form-group">
 								<label for="imagen">Imagen</label> <input type="file"
-									id="archivoImagen" name="archivoImagen" required="true" />
+									id="archivoImagen" name="archivoImagen" required="required"/>
 								<p class="help-block">Tamaño recomendado: 1140 x 250</p>
 							</div>
 						</div>
@@ -61,6 +61,7 @@
 							<div class="form-group">
 								<label for="estatus">Estatus</label> <select id="estatus"
 									name="estatus" class="form-control">
+									<option value="NONE" label=" - Selecciona una opción - "/>
 									<option value="Activo">Activo</option>
 									<option value="Inactivo">Inactivo</option>
 								</select>

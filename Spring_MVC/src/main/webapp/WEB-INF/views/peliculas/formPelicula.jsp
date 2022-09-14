@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -7,6 +6,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!-- Incluimos el tags lib propios de spring -->
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,62 +44,58 @@
 			</div>
 		
 		
-		<div class="panel-body">
 		<!-- Agregamos validacíon en los campos de los formularios -->
-		<!-- pelicula sería nuestro objeto de modelo Pelicula -> "pelicula"  -->
-		<spring:hasBindErrors name="pelicula">
+		<!-- pelicula sería nuestro objeto de modelo Pelicula -> "pelicula" 
+		<spring:hasBindErrors name="pelicula"> 
 			<div class="alert alert-danger" role='alert'>
-				Debe corregir los siguientes errores:
-				<ul>
-					<c:forEach items="${errors.allErrors}" var="error">
-						<li><spring:message message="${error}"></spring:message>
-						</li>
-					</c:forEach>
-				</ul>
+					<form:errors path="pelicula.titulo" cssClass="form-error"></form:errors>
 			</div>
+		</spring:hasBindErrors>	
+		 -->
+		<div class="panel-body">
 
-
-		</spring:hasBindErrors>
-
-
-		<form action="${guardarPelicula}" method="post" enctype="multipart/form-data">
+		<form:form action="${guardarPelicula}" method="post" enctype="multipart/form-data" modelAttribute="pelicula" 
+			htmlEscape="true">
+				
         <div class="row">
           <div class="col-sm-3">
             <div class="form-group">
               <label for="titulo">Título</label>
-              <input type="text" class="form-control" name="titulo" id="titulo" required="required" />
+              <form:input type="text" class="form-control" path="titulo" id="titulo" />
+              <form:errors id="validacionMensaje" path="titulo" class="alert alert-danger"></form:errors>
             </div>  
           </div>
           <div class="col-sm-3">
             <div class="form-group">
               <label for="duracion">Duracion</label>
-              <input type="text" class="form-control" name="duracion" id="duracion" required="required" />
+              <form:input type="text" class="form-control" path="duracion" id="duracion" required="required" />
             </div>  
           </div>
           <div class="col-sm-3">
             <div class="form-group">
               <label for="clasificacion" class="control-label">Clasificacion</label>              
-              <select id="clasificacion" name="clasificacion" class="form-control">
-                <option value="A">Clasificacion A</option>
-                <option value="B">Clasificacion B</option>
-                <option value="C">Clasificacion C</option>                  
-              </select>             
+              <form:select id="clasificacion" path="clasificacion" class="form-control">
+              	<form:option value="NONE" label=" - Selecciona una Opción -"/>
+                <form:option value="A">Clasificacion A</form:option>
+                <form:option value="B">Clasificacion B</form:option>
+                <form:option value="C">Clasificacion C</form:option>                  
+              </form:select>             
             </div> 
           </div>
           <div class="col-sm-3">
             <div class="form-group">
               <label for="genero" class="control-label">Genero</label>              
-              <select id="genero" name="genero" class="form-control">
-                <option value="Accion">Accion</option>
-                <option value="Aventura">Aventura </option>
-                <option value="Clasicas">Clasicas</option>                  
-                <option value="Comedia Romantica">Comedia Romantica</option>                  
-                <option value="Drama">Drama</option>                  
-                <option value="Terror">Terror</option>                  
-                <option value="Infantil">Infantil</option>                  
-                <option value="Accion y Aventura">Accion y Aventura</option>                  
-                <option value="Romantica">Romantica</option>                  
-              </select>             
+              <form:select id="genero" path="genero" class="form-control">
+                <form:option value="Accion">Accion</form:option>
+                <form:option value="Aventura">Aventura </form:option>
+                <form:option value="Clasicas">Clasicas</form:option>                  
+                <form:option value="Comedia Romantica">Comedia Romantica</form:option>                  
+                <form:option value="Drama">Drama</form:option>                  
+                <form:option value="Terror">Terror</form:option>                  
+                <form:option value="Infantil">Infantil</form:option>                  
+                <form:option value="Accion y Aventura">Accion y Aventura</form:option>                  
+                <form:option value="Romantica">Romantica</form:option>                  
+              </form:select>             
             </div> 
           </div>         
         </div>
@@ -107,17 +104,17 @@
           <div class="col-sm-3">
             <div class="form-group">
               <label for="estatus" class="control-label">Estatus</label>              
-              <select id="estatus" name="estatus" class="form-control">
-                <option value="Activa">Activa</option>
-                <option value="Inactiva">Inactiva</option>               
-              </select>             
+              <form:select id="estatus" path="estatus" class="form-control">
+                <form:option value="Activa">Activa</form:option>
+                <form:option value="Inactiva">Inactiva</form:option>               
+              </form:select>             
             </div> 
           </div>   
             
           <div class="col-sm-3">
             <div class="form-group">
               <label for="fechaEstreno">Fecha Estreno</label>             
-              <input type="text" class="form-control" name="fechaEstreno" id="fechaEstreno" required="required" />
+              <form:input type="text" class="form-control" path="fechaEstreno" id="fechaEstreno" required="required" />
             </div>  
           </div>
 
@@ -171,7 +168,7 @@
         
 		 <a href="${volverAtras}" type="button" class="btn btn-info">Volver</a>
         
-      </form> 
+      </form:form> 
       </div>
 		</div>
       <hr class="featurette-divider">

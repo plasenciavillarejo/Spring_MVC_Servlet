@@ -59,5 +59,20 @@
 	
 	<bean id="multipartResolver"
 	class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
+
+	<!-- 6.- Configuración de los mensajes para evitar el siguiente error 
+		 No message found under code 'pelicula.titulo' for locale 'es_ES'.] con causa raíz
+	-->
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<!--classpath of your messages -->
+		<property name="basename" value="classpath:/main/resources/messages" />
+		<property name="useCodeAsDefaultMessage" value="true" />
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
+	
+	
+	
 	
 </beans>

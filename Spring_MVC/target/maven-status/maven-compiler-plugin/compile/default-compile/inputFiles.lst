@@ -12,3 +12,4 @@
 /Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/service/INoticiaService.java
 /Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/serviceImpl/NoticiaServiceImpl.java
 /Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/model/Noticia.java
+/Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/validator/PeliculasValidator.java

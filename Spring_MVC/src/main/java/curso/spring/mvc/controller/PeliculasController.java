@@ -16,9 +16,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,6 +30,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import curso.spring.mvc.model.Pelicula;
 import curso.spring.mvc.service.IPeliculasService;
 import curso.spring.mvc.util.Utileria;
+import curso.spring.mvc.validator.PeliculasValidator;
 
 @Controller
 @RequestMapping("/peliculas")
@@ -43,7 +46,6 @@ public class PeliculasController {
 	public static final String REEDIRECCIONPELICULAS = "/peliculas/listarPeliculas";
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger(NoticiasController.class);
-
 	
 	@GetMapping(value="/listarPeliculas")
 	public String mostrarIndex(Model model) {
@@ -53,19 +55,19 @@ public class PeliculasController {
 	}
 	
 	@GetMapping(value = "/create")
-	public String crear() {
+	public String crear(@ModelAttribute("pelicula") Pelicula pelicula) {
 		return FORMPELICULA;
 	}
 	
 	@PostMapping(value = "/save")
-	public String guardar(Pelicula pelicula, BindingResult result, RedirectAttributes flashAttributes,
-			@RequestParam("archivoImagen") MultipartFile file, HttpServletRequest request) {
+	public String guardar(@Validated @ModelAttribute("pelicula") Pelicula pelicula,BindingResult result, 
+			@RequestParam("archivoImagen") MultipartFile file, RedirectAttributes flashAttributes, HttpServletRequest request) {
 
 		/*
 		 * for(ObjectError error: result.getAllErrors()) {
 		 * LOGGER.info("El formulario contiene un error/es." + error); }
 		 */
-
+		
 		if (result.hasErrors()) {
 			LOGGER.info("El formulario contiene errores.");
 			return FORMPELICULA;
@@ -108,6 +110,8 @@ public class PeliculasController {
 		//binder.registerCustomEditor(Date.class, "fechaEstreno", new CustomDateEditor(format, false));
 		
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(format, false));
+		
+		binder.setValidator(new PeliculasValidator());
 	}
 	
 	

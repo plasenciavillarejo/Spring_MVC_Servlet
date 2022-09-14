@@ -6,6 +6,7 @@ curso/spring/mvc/controller/BannerController.class
 curso/spring/mvc/controller/PeliculasController.class
 curso/spring/mvc/service/IBannerService.class
 curso/spring/mvc/serviceImpl/NoticiaServiceImpl.class
+curso/spring/mvc/validator/PeliculasValidator.class
 curso/spring/mvc/model/Banner.class
 curso/spring/mvc/serviceImpl/PeliculasServiceImpl.class
 curso/spring/mvc/util/Utileria.class
