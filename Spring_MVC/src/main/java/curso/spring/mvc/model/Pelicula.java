@@ -18,6 +18,10 @@ public class Pelicula {
 	private String estatus="Activa";
 	
 	
+	public Pelicula() {
+		
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -66,13 +70,7 @@ public class Pelicula {
 	public void setEstatus(String estatus) {
 		this.estatus = estatus;
 	}
-	
-	@Override
-	public String toString() {
-		return "Pelicula [id=" + id + ", titulo=" + titulo + ", duracion=" + duracion + ", clasificacion="
-				+ clasificacion + ", genero=" + genero + ", imagen=" + imagen + ", fechaEstreno=" + fechaEstreno
-				+ ", estatus=" + estatus + "]";
-	}
+
 	
 	 
 }

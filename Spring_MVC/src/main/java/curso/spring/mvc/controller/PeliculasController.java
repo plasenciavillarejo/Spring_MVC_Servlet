@@ -47,6 +47,22 @@ public class PeliculasController {
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger(NoticiasController.class);
 	
+	
+	/* Se encarga de validar el formato de la fecha para indicarlo en formato dd-MM-yyyy */
+	@InitBinder
+	public void initBinder (WebDataBinder binder) {
+		SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+		
+		/* Se puede especificar el campo de la fecha si se desea, pero se puede omitir si en el modelo "Pelicula"
+		   se indica el 	@DateTimeFormat(pattern = "dd-MM-yyyy")
+			binder.registerCustomEditor(Date.class, "fechaEstreno", new CustomDateEditor(format, false)); */
+		
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(format, false));
+		
+		binder.setValidator(new PeliculasValidator());
+	}
+		
+	
 	@GetMapping(value="/listarPeliculas")
 	public String mostrarIndex(Model model) {
 		List<Pelicula> listarPeliculas = peliculasService.buscarTodas();
@@ -102,17 +118,6 @@ public class PeliculasController {
 		return "redirect:"+REEDIRECCIONPELICULAS;
 	}
 	
-	/* Se encarga de validar el formato de la fecha para indicarlo en formato dd-MM-yyyy */
-	@InitBinder
-	public void initBinder (WebDataBinder binder) {
-		SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-		// Se puede especificar el campo de la fecha si se desea, pero se puede omitir si en el modelo "Pelicula" se indica el 	@DateTimeFormat(pattern = "dd-MM-yyyy")
-		//binder.registerCustomEditor(Date.class, "fechaEstreno", new CustomDateEditor(format, false));
-		
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(format, false));
-		
-		binder.setValidator(new PeliculasValidator());
-	}
 	
 	
 	
