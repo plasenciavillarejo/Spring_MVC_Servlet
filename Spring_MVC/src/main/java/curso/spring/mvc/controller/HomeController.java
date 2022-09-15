@@ -1,6 +1,8 @@
 package curso.spring.mvc.controller;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -68,8 +70,7 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
-	public String buscar(@RequestParam("fecha") String fecha, Model model) {
-
+	public String buscar(@RequestParam("fecha") String fecha, Model model) throws ParseException {
 		
 		LOGGER.info("Entrando por el método /search");
 		/* Obtenemos la lista de las fechas de la clase Utils */
@@ -79,11 +80,25 @@ public class HomeController {
 		
 		model.addAttribute("fechas", fechas);
 		model.addAttribute("fechaBusqueda", fecha);
-		model.addAttribute("peliculas", peliculas);
+		
+		
+		// Solo mostramos las peliculas filtras por fecha
+		List<Pelicula> peliculasPorFecha = new ArrayList<>();
+		for(Pelicula peli: peliculas) {
+			String fechaString = Utileria.pasarFechaString(peli.getFechaEstreno());
+			
+			if(fecha.equalsIgnoreCase(fechaString)) {
+				// Volvemos a pasar la fecha de String a date y guardamos la película.
+				Date fechaDate = Utileria.pasarFechasDate(fecha);
+				peli.setFechaEstreno(fechaDate);
+				peliculasPorFecha.add(peli);
+			}
+			
+		}
+		model.addAttribute("peliculas", peliculasPorFecha);
 
 		return VISTAHOME;
 	}
-	
 	
 	/* ################### INICIO ######################   */
 	/* ### Mismo Métodos Utiliznado de diferente forma ### */

@@ -1,6 +1,7 @@
 package curso.spring.mvc.util;
 
 import java.io.File;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -93,6 +94,22 @@ public class Utileria {
 		return builder.toString();
 	}
 	
+	/* Función encargad de pasar una fecha Date a String */ 
+	public static String pasarFechaString(Date fechaEstreno) {
 
+		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+		String fechaString = formato.format(fechaEstreno);
+
+		return fechaString;
+	}
+	
+	public static Date pasarFechasDate(String fechaEstreno) throws ParseException {
+		
+		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+		Date dataFormateada = formato.parse(fechaEstreno); 
+		
+		return dataFormateada;
+	}
+	
 	
 }

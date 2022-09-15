@@ -70,7 +70,7 @@
 								<td>${listaPeliculas.genero}</td>
 								<td>${listaPeliculas.clasificacion}</td>
 								<td>${listaPeliculas.duracion}</td>
-								<td><fmt:formatDate value="${listaPeliculas.fechaEstreno}" pattern="dd-MM-yyyy"/></td>
+								<td><fmt:formatDate value="${listaPeliculas.fechaEstreno}" pattern="dd-MM-yyyy hh:mm:ss"/></td>
 								<c:choose>
 									<c:when test="${listaPeliculas.estatus eq 'Activa'}">
 										<td><span class="label label-success">${listaPeliculas.estatus}</span></td>

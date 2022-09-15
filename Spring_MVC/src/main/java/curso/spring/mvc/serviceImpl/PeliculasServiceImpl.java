@@ -30,7 +30,7 @@ public class PeliculasServiceImpl implements IPeliculasService{
 			pelicula1.setClasificacion("B");
 			pelicula1.setGenero("Adventura");
 			pelicula1.setImagen("estreno6.png");
-			pelicula1.setFechaEstreno(formato.parse("17-09-2022"));
+			pelicula1.setFechaEstreno(formato.parse("15-09-2022"));
 
 			listaPeliculas.add(pelicula1);
 
@@ -40,7 +40,7 @@ public class PeliculasServiceImpl implements IPeliculasService{
 			pelicula2.setDuracion(129);
 			pelicula2.setClasificacion("A");
 			pelicula2.setGenero("Acción");
-			pelicula2.setFechaEstreno(formato.parse("07-10-2021"));
+			pelicula2.setFechaEstreno(formato.parse("15-09-2022"));
 			pelicula2.setImagen("venom.jpg");
 			listaPeliculas.add(pelicula2);
 
@@ -50,7 +50,7 @@ public class PeliculasServiceImpl implements IPeliculasService{
 			pelicula3.setDuracion(129);
 			pelicula3.setClasificacion("C");
 			pelicula3.setGenero("Acción");
-			pelicula3.setFechaEstreno(formato.parse("06-06-2017"));
+			pelicula3.setFechaEstreno(formato.parse("16-09-2022"));
 			pelicula3.setImagen("estreno4.jpg");
 			pelicula3.setEstatus("Inactiva");
 			listaPeliculas.add(pelicula3);
@@ -61,7 +61,7 @@ public class PeliculasServiceImpl implements IPeliculasService{
 			pelicula4.setDuracion(145);
 			pelicula4.setClasificacion("A");
 			pelicula4.setGenero("Suspense");
-			pelicula4.setFechaEstreno(formato.parse("10-10-2021"));
+			pelicula4.setFechaEstreno(formato.parse("17-09-2022"));
 			pelicula4.setImagen("estreno7.png");
 			listaPeliculas.add(pelicula4);
 			

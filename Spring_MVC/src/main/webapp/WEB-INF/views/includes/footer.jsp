@@ -31,7 +31,7 @@
 var mensajeConfirmacion = '${mensajeConfirmacion}';
 	
 		if(mensajeConfirmacion !== ""){
-			console.log("dfdgfdf");
+			console.log("Entrando por la función de mensaje confirmación");
 			setTimeout(function() {
 				$("#alerta").fadeOut(1500);
 			}, 3000);
