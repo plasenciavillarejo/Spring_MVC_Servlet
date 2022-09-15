@@ -2,12 +2,15 @@ package curso.spring.mvc.model;
 
 import java.util.Date;
 
+import javax.validation.constraints.Pattern;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class Pelicula {
 
 	public int id;
 	public String titulo;
+	@Pattern(regexp = "[0-9]{3}", message = "Solo se permiten 3 números")
 	public int duracion;
 	public String clasificacion;
 	public String genero;

@@ -61,7 +61,8 @@
           	<div class="col-sm-3">
             	<div class="form-group">
              	  <label for="titulo">Título</label>
-              		<form:input type="text" class="form-control" path="titulo" id="titulo" required="required" />
+              		<form:input type="text" class="form-control" path="titulo" id="titulo" required="required"
+              			htmlEscape="true" />
               		<form:errors id="validacionMensaje" path="titulo" class="alert alert-danger"></form:errors>
             	</div>  
           	</div>
@@ -81,13 +82,15 @@
                 <form:option value="A">Clasificacion A</form:option>
                 <form:option value="B">Clasificacion B</form:option>
                 <form:option value="C">Clasificacion C</form:option>                  
-              </form:select>             
+              </form:select>
+              <form:errors id="validacionMensaje" path="clasificacion" class="alert alert-danger"></form:errors>          
             </div> 
           </div>
           <div class="col-sm-3">
             <div class="form-group">
               <label for="genero" class="control-label">Genero</label>              
               <form:select id="genero" path="genero" class="form-control">
+				<form:option value="NONE" label=" - Selecciona una Opción -"/>
                 <form:option value="Accion">Accion</form:option>
                 <form:option value="Aventura">Aventura </form:option>
                 <form:option value="Clasicas">Clasicas</form:option>                  
@@ -97,7 +100,8 @@
                 <form:option value="Infantil">Infantil</form:option>                  
                 <form:option value="Accion y Aventura">Accion y Aventura</form:option>                  
                 <form:option value="Romantica">Romantica</form:option>                  
-              </form:select>             
+              </form:select>   
+              <form:errors id="validacionMensaje" path="genero" class="alert alert-danger"></form:errors>          
             </div> 
           </div>         
         </div>
@@ -107,9 +111,11 @@
             <div class="form-group">
               <label for="estatus" class="control-label">Estatus</label>              
               <form:select id="estatus" path="estatus" class="form-control">
+                <form:option value="NONE" label=" - Selecciona una Opción -" />
                 <form:option value="Activa">Activa</form:option>
-                <form:option value="Inactiva">Inactiva</form:option>               
+				<form:option value="Inactiva">Inactiva</form:option>
               </form:select>             
+			  <form:errors id="validacionMensaje" path="estatus" class="alert alert-danger"></form:errors>          
             </div> 
           </div>   
             

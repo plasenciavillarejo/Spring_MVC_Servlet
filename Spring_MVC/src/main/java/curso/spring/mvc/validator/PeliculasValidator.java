@@ -15,7 +15,7 @@ public class PeliculasValidator implements Validator {
 
 	public static final Logger LOGGER = LoggerFactory.getLogger(PeliculasValidator.class);
 
-	public static final String FORMATODURACION = "^[0-9][0-9]*$s";
+	public static final String FORMATODURACION = "[a-zA-z]+";
 	
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -36,10 +36,29 @@ public class PeliculasValidator implements Validator {
 		/*ValidationUtils.rejectIfEmptyOrWhitespace(errors, "duracion", "pelicula.duracion",
 				"La duración no puede estar vacía."); */
 
+		if(pelicula.getDuracion() == 0) {
+			errors.rejectValue("duracion","pelicula.duracion", "La duración de la pelicula solo debe contener digitos.");
+		}
+		
+		/* Nota: Si se quiere validar un valor int que no contenga string cuando pones en el input un 123s
+		 * automaticamente pelicula.getDuracion() tiene un valor de "0" por lo que no almacena las letras.
 		if (!validarDigitos(pelicula.getDuracion())) {
 			errors.rejectValue("duracion","pelicula.duracion", "La duración de la pelicula solo debe contener digitos.");
 		}
-
+		*/
+		
+		if(pelicula.getClasificacion().equalsIgnoreCase("NONE")) {
+			errors.rejectValue("clasificacion","pelicula.clasificacion", "Debe escoger alguna opción disponible");
+		}
+		
+		if(pelicula.getGenero().equalsIgnoreCase("NONE")) {
+			errors.rejectValue("genero","pelicula.genero", "Debe escoger alguna opción disponible");
+		}
+		
+		if(pelicula.getEstatus().equalsIgnoreCase("NONE")) {
+			errors.rejectValue("estatus","pelicula.estatus", "Debe escoger alguna opción disponible");
+		}
+		
 	}
 
 	public boolean validarDigitos(int duracion) {
@@ -50,10 +69,10 @@ public class PeliculasValidator implements Validator {
 		//Matcher match = pattern.matcher(dura);
 
 		if (!dura.matches(FORMATODURACION)) {
-			return false;
+			return true;
 		}
 
-		return true;
+		return false;
 	}
 
 }
