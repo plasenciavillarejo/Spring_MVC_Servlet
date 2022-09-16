@@ -37,16 +37,14 @@
 
       <!-- Carousel -->
       <!-- ######## -->
-      
+      <c:if test="${vistaPrincipal == 'Si'}">
       <div id="myCarousel" class="carousel slide" data-ride="carousel">
-			
 			<ol class="carousel-indicators">
 				<c:forEach items="${banners}" var="banner" varStatus="loop">
 					<c:if test="${banner.estatus=='Activa'}">
 						<c:choose>
 							<c:when test="${loop.index ==0}">
-								<li data-target="#myCarousel" data-slide-to="${loop.index}"
-									class="active"></li>
+								<li data-target="#myCarousel" data-slide-to="${loop.index}" class="active"></li>
 							</c:when>
 							<c:otherwise>
 								<li data-target="#myCarousel" data-slide-to="${loop.index}"></li>
@@ -55,15 +53,15 @@
 					</c:if>
 				</c:forEach>
 			</ol>
-				<%-- Asi estaba de forma Estatica
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>         
-          <li data-target="#myCarousel" data-slide-to="3"></li>	
-           --%>
-
 			
-			<!-- Image Size 1140 x 250 -->
+		 <%-- Asi estaba de forma Estatica
+          	<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          	<li data-target="#myCarousel" data-slide-to="1"></li>
+          	<li data-target="#myCarousel" data-slide-to="2"></li>         
+          	<li data-target="#myCarousel" data-slide-to="3"></li>	
+           --%>
+		
+		<!-- Image Size 1140 x 250 -->
 		 <div class="carousel-inner" role="listbox">
 				<c:forEach items="${banners}" var="banner" varStatus="loop">
 					<c:if test="${banner.estatus=='Activa'}">
@@ -97,9 +95,7 @@
 	          <div class="item">         
 	            <img src="${urlPublic}/images/slide4.jpg" alt="Slide" title="Some text" >
 	          </div>
-           --%>
-			
-			
+           --%>	
 		</div>
 			<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
           <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -109,8 +105,8 @@
           <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
-       
       </div>
+      </c:if>
       <!-- /.carousel -->
 	<!-- ############ -->
 

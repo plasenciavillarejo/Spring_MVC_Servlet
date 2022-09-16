@@ -4,6 +4,7 @@ import java.io.File;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -63,21 +64,34 @@ public class PeliculasController {
 	}
 		
 	
-	@GetMapping(value="/listarPeliculas")
+	@GetMapping(value = "/listarPeliculas")
 	public String mostrarIndex(Model model) {
 		List<Pelicula> listarPeliculas = peliculasService.buscarTodas();
+
 		model.addAttribute("listarPeliculas", listarPeliculas);
+
 		return MOSTRARPELICULAS;
 	}
-	
+
 	@GetMapping(value = "/create")
-	public String crear(@ModelAttribute("pelicula") Pelicula pelicula) {
+	public String crear(@ModelAttribute("pelicula") Pelicula pelicula, Model model) {
+
+		// Buscamos los valores para mostrar en la vista
+		List<String> listarGeneros = peliculasService.buscarGeneros();
+		Map<String, String> clasificaciones = peliculasService.buscarClasificacion();
+		Map<String, String> estatus = peliculasService.buscarEstado();
+		
+		// Pasamos los valores a la vista.
+		model.addAttribute("listarGeneros", listarGeneros);
+		model.addAttribute("listaClasificacion", clasificaciones);
+		model.addAttribute("listarEstados", estatus);
+		
 		return FORMPELICULA;
 	}
 	
 	@PostMapping(value = "/save")
 	public String guardar(@Validated @ModelAttribute("pelicula") Pelicula pelicula,BindingResult result, 
-			@RequestParam("archivoImagen") MultipartFile file, RedirectAttributes flashAttributes, HttpServletRequest request) {
+			@RequestParam("archivoImagen") MultipartFile file,Model model, RedirectAttributes flashAttributes, HttpServletRequest request) {
 
 		/*
 		 * for(ObjectError error: result.getAllErrors()) {
@@ -86,6 +100,11 @@ public class PeliculasController {
 		
 		if (result.hasErrors()) {
 			LOGGER.info("El formulario contiene errores.");
+
+			model.addAttribute("listarGeneros", peliculasService.buscarGeneros());
+			model.addAttribute("listaClasificacion", peliculasService.buscarClasificacion());
+			model.addAttribute("listarEstados", peliculasService.buscarEstado());
+			
 			return FORMPELICULA;
 		}
 		

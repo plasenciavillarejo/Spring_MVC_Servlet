@@ -55,7 +55,7 @@ public class PeliculasValidator implements Validator {
 			errors.rejectValue("genero","pelicula.genero", "Debe escoger alguna opción disponible");
 		}
 		
-		if(pelicula.getEstatus().equalsIgnoreCase("NONE")) {
+		if(pelicula.getEstatus().equalsIgnoreCase("1")) {
 			errors.rejectValue("estatus","pelicula.estatus", "Debe escoger alguna opción disponible");
 		}
 		

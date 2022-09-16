@@ -65,35 +65,35 @@ public class HomeController {
 		model.addAttribute("fechaBusqueda", FORMATOFECHAS.format(new Date()));
 		model.addAttribute("peliculas", peliculas);
 		model.addAttribute("banners", banners);
-
+		model.addAttribute("vistaPrincipal", "Si");
+		
 		return VISTAHOME;
 	}
 
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public String buscar(@RequestParam("fecha") String fecha, Model model) throws ParseException {
-		
+
 		LOGGER.info("Entrando por el método /search");
 		/* Obtenemos la lista de las fechas de la clase Utils */
 		List<String> fechas = Utileria.getNextDays(4);
 
-		List<Pelicula> peliculas = servicioPelicula.buscarTodas();	
-		
+		List<Pelicula> peliculas = servicioPelicula.buscarTodas();
+
 		model.addAttribute("fechas", fechas);
 		model.addAttribute("fechaBusqueda", fecha);
-		
-		
+
 		// Solo mostramos las peliculas filtras por fecha
 		List<Pelicula> peliculasPorFecha = new ArrayList<>();
-		for(Pelicula peli: peliculas) {
+
+		for (Pelicula peli : peliculas) {
 			String fechaString = Utileria.pasarFechaString(peli.getFechaEstreno());
-			
-			if(fecha.equalsIgnoreCase(fechaString)) {
+
+			if (fecha.equalsIgnoreCase(fechaString)) {
 				// Volvemos a pasar la fecha de String a date y guardamos la película.
 				Date fechaDate = Utileria.pasarFechasDate(fecha);
 				peli.setFechaEstreno(fechaDate);
 				peliculasPorFecha.add(peli);
 			}
-			
 		}
 		model.addAttribute("peliculas", peliculasPorFecha);
 
@@ -105,17 +105,18 @@ public class HomeController {
 	
 	
 	@RequestMapping(value = "/detail/{id}/{fecha}", method = RequestMethod.GET)
-	public String mostrarDetalle(@PathVariable("id") int id,@PathVariable("fecha") String fechaPeliculas,Model model) {
-		
+	public String mostrarDetalle(@PathVariable("id") int id, @PathVariable("fecha") String fechaPeliculas,
+			Model model) {
+
 		LOGGER.info("Buscando horarios para la pelicula: " + id);
 		LOGGER.info("Para la fecha: " + fechaPeliculas);
-		
+
 		Pelicula pelicula = null;
 		try {
 			pelicula = servicioPelicula.buscarPorId(id);
 			model.addAttribute("pelicula", pelicula);
-			
-		}catch (Exception e) {
+
+		} catch (Exception e) {
 			LOGGER.info("Ha fallao la busqueda de la película" + e.getMessage());
 		}
 		return VISTADETALLE;

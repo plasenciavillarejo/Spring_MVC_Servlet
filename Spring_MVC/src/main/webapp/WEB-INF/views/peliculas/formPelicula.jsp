@@ -56,7 +56,10 @@
 
 		<form:form action="${guardarPelicula}" method="post" enctype="multipart/form-data" modelAttribute="pelicula" 
 			htmlEscape="true">
-				
+		
+		<!-- ### Ocultamos el Id cuando se envíe el formulario para proteger nuestra seguridad ### -->
+		<form:hidden id="id" path="id"/>
+		
         <div class="row">
           	<div class="col-sm-3">
             	<div class="form-group">
@@ -74,32 +77,24 @@
               <form:errors id="validacionMensaje" path="duracion" class="alert alert-danger"></form:errors>
             </div>  
           </div>
+          
           <div class="col-sm-3">
             <div class="form-group">
               <label for="clasificacion" class="control-label">Clasificacion</label>              
               <form:select id="clasificacion" path="clasificacion" class="form-control">
               	<form:option value="NONE" label=" - Selecciona una Opción -"/>
-                <form:option value="A">Clasificacion A</form:option>
-                <form:option value="B">Clasificacion B</form:option>
-                <form:option value="C">Clasificacion C</form:option>                  
+              	<form:options id="clasificacion" path="clasificacion" items="${listaClasificacion}" />
               </form:select>
               <form:errors id="validacionMensaje" path="clasificacion" class="alert alert-danger"></form:errors>          
             </div> 
           </div>
+          
           <div class="col-sm-3">
             <div class="form-group">
               <label for="genero" class="control-label">Genero</label>              
               <form:select id="genero" path="genero" class="form-control">
 				<form:option value="NONE" label=" - Selecciona una Opción -"/>
-                <form:option value="Accion">Accion</form:option>
-                <form:option value="Aventura">Aventura </form:option>
-                <form:option value="Clasicas">Clasicas</form:option>                  
-                <form:option value="Comedia Romantica">Comedia Romantica</form:option>                  
-                <form:option value="Drama">Drama</form:option>                  
-                <form:option value="Terror">Terror</form:option>                  
-                <form:option value="Infantil">Infantil</form:option>                  
-                <form:option value="Accion y Aventura">Accion y Aventura</form:option>                  
-                <form:option value="Romantica">Romantica</form:option>                  
+                <form:options id="genero" path="genero" items="${listarGeneros}" />               
               </form:select>   
               <form:errors id="validacionMensaje" path="genero" class="alert alert-danger"></form:errors>          
             </div> 
@@ -111,9 +106,8 @@
             <div class="form-group">
               <label for="estatus" class="control-label">Estatus</label>              
               <form:select id="estatus" path="estatus" class="form-control">
-                <form:option value="NONE" label=" - Selecciona una Opción -" />
-                <form:option value="Activa">Activa</form:option>
-				<form:option value="Inactiva">Inactiva</form:option>
+                <form:option value="1" label=" - Selecciona una Opción -" />
+     			<form:options items="${listarEstados}" id="estatus" path="estatus"/>
               </form:select>             
 			  <form:errors id="validacionMensaje" path="estatus" class="alert alert-danger"></form:errors>          
             </div> 
@@ -129,8 +123,10 @@
           <div class="col-sm-3">
             <div class="form-group">
               <label for="imagen">Imagen</label>
+              <form:hidden path="imagen"/>
               <input type="file" id="archivoImagen" name="archivoImagen" />
               <p class="help-block">Imagen de la pelicula</p>
+               
             </div> 
           </div>
         </div>
