@@ -8,5 +8,6 @@ public interface IBannerService {
 
 	public void insertar(Banner banner);
 	public List<Banner> mostrarCarrousel();
+	public List<String> estatus();
 	
 }

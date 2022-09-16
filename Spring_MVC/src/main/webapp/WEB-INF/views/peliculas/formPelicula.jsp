@@ -36,7 +36,7 @@
 
     <div class="container theme-showcase" role="main">
 
-				<div class="panel panel-default">
+		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="blog-title">
 					<span class="label label-success">Datos de la Pelicula</span>
@@ -107,7 +107,7 @@
               <label for="estatus" class="control-label">Estatus</label>              
               <form:select id="estatus" path="estatus" class="form-control">
                 <form:option value="1" label=" - Selecciona una Opción -" />
-     			<form:options items="${listarEstados}" id="estatus" path="estatus"/>
+     			<form:options items="${listarEstados}"/>
               </form:select>             
 			  <form:errors id="validacionMensaje" path="estatus" class="alert alert-danger"></form:errors>          
             </div> 

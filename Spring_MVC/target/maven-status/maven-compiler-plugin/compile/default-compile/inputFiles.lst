@@ -10,7 +10,12 @@
 /Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/controller/HomeController.java
 /Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/serviceImpl/PeliculasServiceImpl.java
 /Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/model/Pelicula.java
+/Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/validator/BannerValidator.java
+/Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/serviceImpl/ContactoServiceImpl.java
+/Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/model/Contacto.java
 /Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/service/INoticiaService.java
 /Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/serviceImpl/NoticiaServiceImpl.java
+/Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/controller/ContactoController.java
+/Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/service/IContactoService.java
 /Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/model/Noticia.java
 /Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/validator/PeliculasValidator.java

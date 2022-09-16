@@ -8,6 +8,8 @@
 <!-- Incluimos el tags lib propios de spring -->
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -39,32 +41,32 @@
 			</div>
 			
 			<div class="panel-body">
-				<form action="${urlForm}" method="post"
-					enctype="multipart/form-data">
+				<form:form action="${urlForm}" method="post" enctype="multipart/form-data" modelAttribute="banner">
 					<div class="row">
 						<div class="col-sm-5">
 							<div class="form-group">
-								<label for="titulo">Titulo</label> <input type="text"
-									class="form-control" name="titulo" id="titulo" required="required"/>
+								<label for="titulo">Titulo</label> 
+								<form:input type="text" class="form-control" path="titulo" id="titulo"/>
+								<form:errors id="validacionMensaje" path="titulo" class="alert alert-danger"></form:errors>
 							</div>
 						</div>
 
 						<div class="col-sm-4">
 							<div class="form-group">
 								<label for="imagen">Imagen</label> <input type="file"
-									id="archivoImagen" name="archivoImagen" required="required"/>
+									id="archivoImagen" name="archivoImagen" />
 								<p class="help-block">Tamaño recomendado: 1140 x 250</p>
 							</div>
 						</div>
 
 						<div class="col-sm-3">
 							<div class="form-group">
-								<label for="estatus">Estatus</label> <select id="estatus"
-									name="estatus" class="form-control">
-									<option value="NONE" label=" - Selecciona una opción - "/>
-									<option value="Activo">Activo</option>
-									<option value="Inactivo">Inactivo</option>
-								</select>
+								<label for="estatus">Estatus</label> 
+								<form:select id="estatus" path="estatus" class="form-control">
+									<form:option value="1" label=" - Selecciona una opción - "/>
+									<form:options items="${listaEstatus}" path="estatus"  />
+								</form:select>
+								<form:errors id="validacionMensaje" path="estatus" class="alert alert-danger"></form:errors>
 							</div>
 						</div>
 					</div>
@@ -72,7 +74,7 @@
 					<button type="submit" class="btn btn-danger">Guardar</button>
 					
 					 <a href="${volverAtras}" type="button" class="btn btn-info">Volver</a>
-				</form>
+				</form:form>
 			</div>
 		</div>
 

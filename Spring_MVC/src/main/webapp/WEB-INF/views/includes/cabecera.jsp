@@ -11,6 +11,7 @@
 <spring:url value="/" var="volverAtras" />
 <spring:url value="/peliculas/listarPeliculas" var="listarPeliculas" />
 <spring:url value="/banners/index" var="listarBanners" />
+<spring:url value="/contacto/index" var="contacto"/>
 
 
 <!-- Añadimos la url para acceder a la carpeta resources donde se ubican los archivos estáticos. -->
@@ -40,6 +41,7 @@
 				<ul class="nav navbar-nav">
 					<li><a href="${listarPeliculas}">Peliculas</a></li>
 					<li><a href="${listarBanners}">Banners</a></li>
+					<li><a href="${contacto}">Contacto</a></li>
 					<li><a href="#">Acerca</a></li>
 					<li><a href="#">Login</a></li>
 				</ul>

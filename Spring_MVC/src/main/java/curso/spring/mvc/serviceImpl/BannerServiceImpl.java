@@ -89,6 +89,17 @@ public class BannerServiceImpl implements IBannerService{
 	}
 
 
+	@Override
+	public List<String> estatus() {
+		
+		List<String> listaEstados = new ArrayList<>();
+		listaEstados.add("Activa");
+		listaEstados.add("Inactiva");
+		
+		return listaEstados;
+	}
+
+
 
 
 }

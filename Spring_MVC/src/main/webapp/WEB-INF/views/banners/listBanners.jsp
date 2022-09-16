@@ -68,14 +68,16 @@
 							<td>${listaBanners.titulo }</td>
 							<td><fmt:formatDate value="${listaBanners.fecha}" pattern="dd-MM-yyyy"/></td>
 							<td>${listaBanners.archivo}</td>
-							<td><c:choose>
+							<td>
+								<c:choose>
 										<c:when test="${listaBanners.estatus eq 'Activa'}">
 											<span class="label label-success">${listaBanners.estatus}</span>
 										</c:when>
 										<c:otherwise>
 											<span class="label label-danger">${listaBanners.estatus}</span>
 										</c:otherwise>
-									</c:choose></td>
+								</c:choose>
+							</td>
 							<td>
 								<a href="#" class="btn btn-success btn-sm" role="button" title="Edit">
 									<span class="glyphicon glyphicon-pencil"></span>
