@@ -29,7 +29,8 @@
 <script type="text/javascript">
 
 var mensajeConfirmacion = '${mensajeConfirmacion}';
-	
+var formularioContacto =  '${formularioContacto}';
+
 		if(mensajeConfirmacion !== ""){
 			console.log("Entrando por la función de mensaje confirmación");
 			setTimeout(function() {
@@ -37,6 +38,16 @@ var mensajeConfirmacion = '${mensajeConfirmacion}';
 			}, 3000);
 		};
 
+		console.log(formularioContacto)
+		
+		// Abrir popup despues de enviar el formulario de contacto
+		if(formularioContacto === "ok"){
+			$('#formContacto').modal('show')
+	 	};
+		
+		
+		
+		
 		//<div class="content">Hola, voy a desaparecer en 3 segundos!</div>
 		//<div class="content2" style="display:none;">Hola, soy un nuevo div!</div>
 //		 	$(document).ready(function() {

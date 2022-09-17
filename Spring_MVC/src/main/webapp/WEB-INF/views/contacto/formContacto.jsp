@@ -19,6 +19,10 @@
       <meta name="author" content="">
       <title>Formulario de Contacto</title>
 
+	<!-- URLS -->
+	<!-- #### -->
+	<spring:url value="/contacto/save" var="guardarContacto" />
+
 </head>
 
 <body>
@@ -32,7 +36,7 @@
 
          <h3 class="blog-title text-center"><span class="label label-success">Contacto</span></h3><br>  
 
-         <form:form class="form-horizontal" modelAttribute="contacto" method="post">
+         <form:form action="${guardarContacto}" class="form-horizontal" modelAttribute="contacto" method="post" >
             <div class="form-group">
                <label for="nombre" class="col-sm-2 control-label">Nombre</label>
                <div class="col-sm-10">
@@ -57,22 +61,20 @@
 
             <div class="form-group">
                <label class="col-sm-2 control-label">Tu experiencia en el sitio</label>
-               <div class="col-sm-10">
-					<c:forEach items="${listarExperiencia}" var="experiencia">
-						<label><form:radiobutton path="rating"
-								value="${experiencia}" />${experiencia}</label>
-					</c:forEach>
+               <div class="col-sm-10" id="experienciaContacto">
+					<label>
+						<form:radiobuttons path="rating" items="${listarExperiencia}" />
+					</label>
 				</div>
             </div>
 
             <div class="form-group">
                <label class="col-sm-2 control-label">Te gustaría recibir notificaciones de:</label>
-               <div class="col-sm-10" id="notificacionesContacto">
-					<c:forEach items="${listarNotificaciones}" var="notificaciones">
-						<label><form:checkbox 
-								path="notificaciones" value="${notificaciones}" />${notificaciones}
-						</label>
-					</c:forEach>
+               <div class="col-sm-10" id="notificacionesContacto" >
+					<label>
+						<form:checkboxes  id="etiquetaNotificaciones" items="${listarNotificaciones}" path="notificaciones"
+						/>
+					</label>	
 				</div>
             </div>
 
@@ -91,6 +93,27 @@
 
          </form:form>
 
+
+
+<!-- Button trigger modal 
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+-->
+<!-- Modal Encargado de abrirse cuando se envía un formulario de contacto. -->
+<div id="formContacto" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" 
+	aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3>El formulario se ha enviado correctamente. Gracias por ayudarnos a mejorar.</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
          <hr class="featurette-divider">
 		
 		<!-- FOOTER -->

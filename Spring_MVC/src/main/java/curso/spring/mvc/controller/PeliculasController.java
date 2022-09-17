@@ -39,7 +39,8 @@ public class PeliculasController {
 
 	@Autowired
 	private IPeliculasService peliculasService;
-		
+	
+	// Ubicacion donde se envia al usuario a consultar las páginas JSP.
 	public static final String FORMPELICULA = "peliculas/formPelicula";
 	public static final String MOSTRARPELICULAS ="/peliculas/listPeliculas";
 	

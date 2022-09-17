@@ -17,8 +17,23 @@
 }
 
 #notificacionesContacto{
-	
 	margin-top: 13px;
-	
-	
 }
+
+#experienciaContacto{
+	margin-top: 9.5px;
+}
+
+/* Separación de la información dentro de los checkbox y los radio */
+input[type=checkbox]{
+   margin:10px !important;
+}
+
+input[type="radio"] {
+	margin:10px !important;
+}
+.modal-content{
+	margin-top: 50%;
+}
+
+

@@ -9,13 +9,29 @@ import java.util.Map;
 import org.springframework.context.event.ApplicationListenerMethodAdapter;
 import org.springframework.stereotype.Service;
 
+import curso.spring.mvc.model.Contacto;
 import curso.spring.mvc.service.IContactoService;
 
 @Service
 public class ContactoServiceImpl implements IContactoService{
 
+	private static List<Contacto> listarContactos = new ArrayList<>();
+	
 	public ContactoServiceImpl(){
+			
+		String [] g = {"Infantil","Romántica"};
+		String [] n = {"Estrenos", "Promociones"};
 		
+		Contacto contacto = new Contacto();
+		contacto.setId(1);
+		contacto.setNombre("Jose Plasencia");
+		contacto.setEmail("plasencia@gmail.com");
+		contacto.setGeneros(g);
+		contacto.setRating(4);
+		contacto.setNotificaciones(n);
+		contacto.setComentarios("La página me ha gustado mucho por que mezcla spring mvc 5.0 y boostrap nuevo. Un toque especial y muy elegante.");
+		
+		listarContactos.add(contacto);
 	}
 
 	@Override
@@ -59,6 +75,11 @@ public class ContactoServiceImpl implements IContactoService{
 		listarNotificaciones.add("Preventas");
 		
 		return listarNotificaciones;
+	}
+
+	@Override
+	public void save(Contacto contacto) {
+		listarContactos.add(contacto);
 	}
 	
 }
