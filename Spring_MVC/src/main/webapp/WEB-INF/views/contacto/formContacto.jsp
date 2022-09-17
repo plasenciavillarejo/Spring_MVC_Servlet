@@ -21,6 +21,7 @@
 
 	<!-- URLS -->
 	<!-- #### -->
+	<spring:url value="/" var="volverAtras"/>
 	<spring:url value="/contacto/save" var="guardarContacto" />
 
 </head>
@@ -34,68 +35,90 @@
 
       <div class="container theme-showcase" role="main">
 
-         <h3 class="blog-title text-center"><span class="label label-success">Contacto</span></h3><br>  
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="blog-title">Contacto</h3>
+			</div>
 
-         <form:form action="${guardarContacto}" class="form-horizontal" modelAttribute="contacto" method="post" >
-            <div class="form-group">
-               <label for="nombre" class="col-sm-2 control-label">Nombre</label>
-               <div class="col-sm-10">
-                  <form:input type="text" class="form-control" id="nombre" path="nombre" placeholder="Nombre" required="required"/>
-               </div>
-            </div>
-            <div class="form-group">
-               <label for="email" class="col-sm-2 control-label">Email</label>
-               <div class="col-sm-10">
-                  <form:input type="email" class="form-control" path="email" id="email" placeholder="Email" required="required"/>
-               </div>
-            </div>
+			<div class="panel-body">
+				<form:form action="${guardarContacto}" class="form-horizontal"
+					modelAttribute="contacto" method="post">
+					<div class="form-group">
+						<label for="nombre" class="col-sm-2 control-label">Nombre</label>
+						<div class="col-sm-10">
+							<form:input type="text" class="form-control" id="nombre"
+								path="nombre" placeholder="Nombre" />
+							<form:errors id="validacionMensaje" path="nombre"
+								class="alert alert-danger" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="email" class="col-sm-2 control-label">Email</label>
+						<div class="col-sm-10">
+							<form:input type="email" class="form-control" path="email"
+								id="email" placeholder="Email" />
+							<form:errors id="validacionMensaje" path="email"
+								class="alert alert-danger" />
+						</div>
+					</div>
 
-            <div class="form-group">
-               <label for="genero" class="col-sm-2 control-label">Géneros Favoritos</label>
-               <div class="col-sm-10">
-                  <form:select id="genero" path="generos" multiple="multiple" class="form-control">
-                	<form:options id="genero" path="genero" items="${listarGeneros}" />                   
-                  </form:select> 
-               </div>
-            </div>
+					<div class="form-group">
+						<label for="genero" class="col-sm-2 control-label">Géneros
+							Favoritos</label>
+						<div class="col-sm-10">
+							<form:select id="genero" path="generos" multiple="multiple"
+								class="form-control">
+								<form:options id="genero" path="genero" items="${listarGeneros}" />
+							</form:select>
+						</div>
+					</div>
 
-            <div class="form-group">
-               <label class="col-sm-2 control-label">Tu experiencia en el sitio</label>
-               <div class="col-sm-10" id="experienciaContacto">
-					<label>
-						<form:radiobuttons path="rating" items="${listarExperiencia}" />
-					</label>
-				</div>
-            </div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Tu experiencia en el
+							sitio</label>
+						<div class="col-sm-10" id="experienciaContacto">
+							<label> <form:radiobuttons path="rating"
+									items="${listarExperiencia}" /> <form:errors
+									id="validacionMensaje" path="rating" class="alert alert-danger" />
+							</label>
+						</div>
+					</div>
 
-            <div class="form-group">
-               <label class="col-sm-2 control-label">Te gustaría recibir notificaciones de:</label>
-               <div class="col-sm-10" id="notificacionesContacto" >
-					<label>
-						<form:checkboxes  id="etiquetaNotificaciones" items="${listarNotificaciones}" path="notificaciones"
-						/>
-					</label>	
-				</div>
-            </div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Te gustaría recibir
+							notificaciones de:</label>
+						<div class="col-sm-10" id="notificacionesContacto">
+							<label> <form:checkboxes id="etiquetaNotificaciones"
+									items="${listarNotificaciones}" path="notificaciones" /> <form:errors
+									id="validacionMensaje" path="notificaciones"
+									class="alert alert-danger" />
+							</label>
+						</div>
+					</div>
 
-            <div class="form-group">
-               <label class="col-sm-2 control-label">Comentarios:</label>
-               <div class="col-sm-10">
-                  <form:textarea class="form-control" path="comentarios" id="comentarios" rows="5"/>
-               </div>
-            </div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Comentarios:</label>
+						<div class="col-sm-10">
+							<form:textarea class="form-control" path="comentarios"
+								id="comentarios" rows="5" />
+							<form:errors id="validacionMensaje" path="comentarios"
+								class="alert alert-danger" />
+						</div>
+					</div>
 
-            <div class="form-group">
-               <div class="col-sm-offset-2 col-sm-10">
-                  <button type="submit" class="btn btn-success">Enviar</button>
-               </div>
-            </div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button type="submit" class="btn btn-success">Enviar</button>
+							<a href="${volverAtras}" type="button" class="btn btn-info">Volver</a>
+						</div>
+					</div>
 
-         </form:form>
+				</form:form>
+			</div>
+		</div>
 
 
-
-<!-- Button trigger modal 
+		<!-- Button trigger modal 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
   Launch demo modal
 </button>

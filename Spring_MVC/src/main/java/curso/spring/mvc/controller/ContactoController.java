@@ -12,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import curso.spring.mvc.model.Contacto;
 import curso.spring.mvc.service.IContactoService;
+import curso.spring.mvc.validator.ContactoValidator;
 
 @Controller
 @RequestMapping("/contacto")
@@ -34,6 +37,10 @@ public class ContactoController {
 	@Autowired
 	private IContactoService contactoService;
 	
+	@InitBinder
+	public void initBindder(WebDataBinder binder) {
+		binder.setValidator(new ContactoValidator());
+	}
 	
 	@GetMapping(value = "/index")
 	public String index(@ModelAttribute("contacto") Contacto contacto,Model model) {
@@ -76,7 +83,7 @@ public class ContactoController {
 		if(contacto != null) {
 			contactoService.save(contacto);
 			flashAttributes.addFlashAttribute("formularioContacto", "ok");
-			LOGGER.info("Se ha guardaro correctamente el formulario" + contacto.getEmail()+ " " + contacto.getNombre());
+			LOGGER.info("Se ha guardaro correctamente el formulario ->" + contacto.getEmail()+ " " + contacto.getNombre());
 		}
 		
 		
