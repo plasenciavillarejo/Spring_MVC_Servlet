@@ -28,7 +28,8 @@ public class Pelicula implements Serializable {
 	private String estatus = "Activa";
 
 	private Detalle detalle;
-
+	private Horario horario;
+	
 	public Pelicula() {
 
 	}
@@ -105,6 +106,15 @@ public class Pelicula implements Serializable {
 		this.detalle = detalle;
 	}
 
+	public Horario getHorario() {
+		return horario;
+	}
+
+	public void setHorario(Horario horario) {
+		this.horario = horario;
+	}
+
+	
 	private static final long serialVersionUID = 1L;
 
 }

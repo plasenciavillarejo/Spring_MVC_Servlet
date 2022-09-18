@@ -29,12 +29,13 @@
 
 	</head>
 
-	<body>
+	<body onload="reloj()">
 
 	<!-- Inculimos la cabecera -->
 	<!-- ##################### -->
 	<jsp:include page="../includes/cabecera.jsp"></jsp:include>
 
+	
 	<div class="container theme-showcase" role="main">
 
 		<div class="panel panel-default">
@@ -44,41 +45,49 @@
 
 			<div class="panel-body">
 				<form:form action="${guardarHorario}" modelAttribute="horario" method="post">
+					
 					<div class="row">
 						<div class="col-sm-3">
 							<div class="form-group">
 								<label for="idPelicula" class="control-label">Pelicula</label>
-								 	<form:select id="idPelicula" path="pelicula" class="form-control">
+								 	<form:select id="idPelicula" path="pelicula.titulo" class="form-control">
 										<form:option value="NONE" label=" - Selecciona una Opción -"/>
               							<form:options id="clasificacion" items="${listarPelicluas}" />
 								</form:select>
 							</div>
 						</div>
+					
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="relojHorario">Reloj Horario</label>
+								 	<output class="form-control" name="reloj" id="relojHora"></output>
+							</div>
+						</div>
+						
 					</div>
+					
 					<div class="row">
 						<div class="col-sm-3">
 							<div class="form-group">
-								<label for="fecha">Fecha</label> <input type="text"
-									class="form-control" name="fecha" id="fecha"
-									required="required" />
+								<label for="fecha">Fecha</label> 
+								<form:input type="text" class="form-control" path="fecha" id="fecha" required="required" />
 							</div>
 						</div>
+						
 						<div class="col-sm-3">
 							<div class="form-group">
-								<label for="hora">Hora</label> <input type="text"
-									class="form-control" name="hora" id="hora"
+								<label for="hora">Hora</label> 
+									<form:input type="text" class="form-control" path="hora" id="hora"
 									placeholder="Formato: HH:mm Ejemplo 21:30" required="required" />
 							</div>
 						</div>
 						<div class="col-sm-3">
 							<div class="form-group">
-								<label for="sala" class="control-label">Sala</label> <select
-									id="sala" name="sala" class="form-control">
-									<option value="Premium">Sala Premium</option>
-									<option value="Sala 1">Sala 1</option>
-									<option value="Sala 2">Sala 2</option>
-									<option value="Sala 3">Sala 3</option>
-								</select>
+								<label for="sala" class="control-label">Sala</label> 
+									<form:select id="sala" path="sala" class="form-control">
+										<form:option value="NONE" label=" - Selecciona una Opción -"/>
+										<form:options items="${listarSalas}"  id="salas"/>
+									</form:select>
 							</div>
 						</div>
 
@@ -115,6 +124,33 @@
 				dateFormat : 'dd-mm-yy'
 			});
 		});
+		
+	var horaActual = '${relojHorario}';	
+		
+	function reloj() {
+
+		var hoy = new Date();
+		var h = hoy.getHours();
+		var m = hoy.getMinutes();
+		var s = hoy.getSeconds();
+
+		m = actualizarHora(m);
+		s = actualizarHora(s);
+
+		document.getElementById("relojHora").innerHTML = h + ":" + m + ":" + s;
+
+		var t = setTimeout(function() {
+			reloj()
+		}, 500);
+
+		}
+
+		function actualizarHora(i) {
+			if (i < 10) {
+				i = "0" + i
+			}; // Cuando es menor de 10, se añade un cero -> 01:00 hasta las 09:59
+			return i;
+		}
 	</script>
 	</body>
 </html>

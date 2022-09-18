@@ -69,32 +69,39 @@
 					</div>
 				</div>
 
+			<c:forEach items="${listarHorarios}" var="listHorarios">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title"><span class="label label-success">20-05-2017</span></h3>
+						<h3 class="panel-title">
+							<span class="label label-success">
+								<fmt:formatDate value="${listHorarios.fecha}" pattern="dd-MM-yyyy"/>
+							</span>
+						</h3>
 					</div>
 					<div class="panel-body">
 						<table class="table table-striped">
 							<thead>
-								<tr>                  
+								<tr>
 									<th>Hora</th>
-									<th>Sala</th>                                  
-									<th>Precio</th>                                  
+									<th>Sala</th>
+									<th>Precio</th>
 								</tr>
 							</thead>
-							<tbody>             
-								<tr>                 
-									<td>16:00</td>
-									<td>Sala 1</td>  
-									<td>$10</td>  
-								</tr>              
-							</tbody>           
+							<tbody>
+						
+								<tr>
+									<td>${listHorarios.hora}</td>
+									<td>${listHorarios.sala}</td>
+									<td>${listHorarios.precio} $</td>
+								</tr>
+						
+							</tbody>
 						</table>
 					</div>
 				</div>
+			</c:forEach>
 
-
-				<div class="row">
+			<div class="row">
 					<div class="col-sm-7">
 						<div class="panel panel-default">
 							<div class="panel-heading">

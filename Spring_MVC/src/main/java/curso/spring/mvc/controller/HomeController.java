@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import curso.spring.mvc.model.Banner;
+import curso.spring.mvc.model.Horario;
 import curso.spring.mvc.model.Pelicula;
 import curso.spring.mvc.service.IBannerService;
+import curso.spring.mvc.service.IHorarioService;
 import curso.spring.mvc.service.IPeliculasService;
 import curso.spring.mvc.util.Utileria;
 
@@ -31,6 +33,9 @@ public class HomeController {
 	
 	@Autowired
 	private IBannerService bannerService;
+	
+	@Autowired 
+	private IHorarioService horarioService;
 	
 	// Buenas Prácticas.
 
@@ -112,8 +117,26 @@ public class HomeController {
 		LOGGER.info("Para la fecha: " + fechaPeliculas);
 
 		Pelicula pelicula = null;
+		List<Horario> buscarHorarios = null;
 		try {
 			pelicula = servicioPelicula.buscarPorId(id);
+			buscarHorarios = horarioService.listarHorarios();
+			
+			Horario guardarDatos = new Horario();
+			List<Horario> listaFinalHorarios = new ArrayList<>();
+			
+			for(Horario hora: buscarHorarios) {
+				if(pelicula.getTitulo().equalsIgnoreCase(hora.getPelicula().getTitulo())) {
+					guardarDatos.setFecha(hora.getFecha());
+					guardarDatos.setHora(hora.getHora());
+					guardarDatos.setPrecio(hora.getPrecio());
+					guardarDatos.setsala(hora.getsala());	
+				}
+				listaFinalHorarios.add(guardarDatos);
+			}
+			
+			
+			model.addAttribute("listarHorarios", listaFinalHorarios);
 			model.addAttribute("pelicula", pelicula);
 
 		} catch (Exception e) {

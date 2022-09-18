@@ -66,8 +66,7 @@
 						<label for="genero" class="col-sm-2 control-label">Géneros
 							Favoritos</label>
 						<div class="col-sm-10">
-							<form:select id="genero" path="generos" multiple="multiple"
-								class="form-control">
+							<form:select id="genero" path="generos" multiple="multiple" class="form-control">
 								<form:options id="genero" path="genero" items="${listarGeneros}" />
 							</form:select>
 						</div>

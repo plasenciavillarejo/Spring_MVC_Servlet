@@ -3,14 +3,20 @@ package curso.spring.mvc.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.constraints.Pattern;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Horario implements Serializable {
 
 	private int id;
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private Date fecha;
 	private String hora;
-	private String sale;
+	private String sala;
 	private double precio;
 	private Pelicula pelicula;
+	private String reloj;
 
 	public Horario() {
 
@@ -40,12 +46,12 @@ public class Horario implements Serializable {
 		this.hora = hora;
 	}
 
-	public String getSale() {
-		return sale;
+	public String getsala() {
+		return sala;
 	}
 
-	public void setSale(String sale) {
-		this.sale = sale;
+	public void setsala(String sala) {
+		this.sala = sala;
 	}
 
 	public double getPrecio() {
@@ -62,6 +68,14 @@ public class Horario implements Serializable {
 
 	public void setPelicula(Pelicula pelicula) {
 		this.pelicula = pelicula;
+	}
+	
+	public String getReloj() {
+		return reloj;
+	}
+
+	public void setReloj(String reloj) {
+		this.reloj = reloj;
 	}
 
 	private static final long serialVersionUID = 1L;
