@@ -122,10 +122,11 @@ public class HomeController {
 			pelicula = servicioPelicula.buscarPorId(id);
 			buscarHorarios = horarioService.listarHorarios();
 			
-			Horario guardarDatos = new Horario();
+			
 			List<Horario> listaFinalHorarios = new ArrayList<>();
 			
 			for(Horario hora: buscarHorarios) {
+				Horario guardarDatos = new Horario();
 				if(pelicula.getTitulo().equalsIgnoreCase(hora.getPelicula().getTitulo())) {
 					guardarDatos.setFecha(hora.getFecha());
 					guardarDatos.setHora(hora.getHora());
