@@ -2,6 +2,9 @@ package curso.spring.mvc.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 public class Contacto implements Serializable {
 
 	private int id;

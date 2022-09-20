@@ -2,10 +2,16 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	   		http://www.springframework.org/schema/beans/spring-beans.xsd
 			http://www.springframework.org/schema/context 
-			http://www.springframework.org/schema/context/spring-context.xsd">
+			http://www.springframework.org/schema/context/spring-context-4.3.xsd
+			http://www.springframework.org/schema/data/jpa 
+			http://www.springframework.org/schema/data/jpa/spring-jpa-1.8.xsd
+			http://www.springframework.org/schema/tx 
+			http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 	<!-- 1.- Este fichero es el encargado de agregar las capas de servicio y la capa de datos tanto los beans como la inyección de las dependencias 
 		como la configuración de acceso a la BBDD. -->
@@ -13,5 +19,39 @@
 	<!-- 2.- Spring al arrancar la aplicación va a escanear automaticamente todas las clases que estén dentro de este paquete y automaticamente todas las clases 
 		que contenga la anotacíon @Service va a crear una nueva instancia. -->
 	<context:component-scan base-package="curso.spring.mvc.serviceImpl" />
+
+	<!-- 3.- Le indicamos donde vamos a almacenar el repositorio -->
+	<jpa:repositories base-package="curso.spring.mvc.repository"/>
+
+	<!-- 4.- Configuración necesaria para la configuracióni de JPA -->
+
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" /> <!-- com.mysql.jdbc.Driver com.mysql.cj.jdbc.Driver -->
+		<property name="url" value="jdbc:mysql://localhost:3306/cineapp?useSSL=false" />
+		<property name="username" value="root" />
+		<property name="password" value="Plasencia_1" />
+	</bean>
+	
+	<bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		<property name="generateDdl" value="false" />
+		<property name="showSql" value="true"></property>
+		<property name="databasePlatform" value="org.hibernate.dialect.MySQL8Dialect" />
+	</bean>
+	
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="packagesToScan" value="curso.spring.mvc.model" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+
+
+
+
+
 
 </beans>
