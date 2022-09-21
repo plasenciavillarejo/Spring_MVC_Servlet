@@ -2,10 +2,12 @@
 /Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/dao/IPeliculaDao.java
 /Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/controller/BannerController.java
 /Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/model/Banner.java
+/Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/serviceImpl/DetalleServiceImpl.java
 /Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/validator/ContactoValidator.java
 /Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/service/IBannerService.java
 /Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/serviceImpl/BannerServiceImpl.java
 /Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/controller/NoticiasController.java
+/Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/service/IDetalleService.java
 /Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/model/Horario.java
 /Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/dao/IHorarioDao.java
 /Users/joseplasenciavillarejo/git/Spring_MVC_Servlet/Spring_MVC/src/main/java/curso/spring/mvc/serviceImpl/NoticiaServiceImpl.java

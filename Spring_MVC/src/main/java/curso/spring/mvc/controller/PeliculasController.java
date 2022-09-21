@@ -3,6 +3,7 @@ package curso.spring.mvc.controller;
 import java.io.File;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,6 +29,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import curso.spring.mvc.dao.IDetalleDao;
+import curso.spring.mvc.model.Detalle;
 import curso.spring.mvc.model.Pelicula;
 import curso.spring.mvc.service.IPeliculasService;
 import curso.spring.mvc.util.Utileria;
@@ -39,6 +42,9 @@ public class PeliculasController {
 
 	@Autowired
 	private IPeliculasService peliculasService;
+	
+	@Autowired
+	private IDetalleDao detalleDao;
 	
 	// Ubicacion donde se envia al usuario a consultar las páginas JSP.
 	public static final String FORMPELICULA = "peliculas/formPelicula";
@@ -78,22 +84,21 @@ public class PeliculasController {
 	public String crear(@ModelAttribute("pelicula") Pelicula pelicula, Model model) {
 
 		// Buscamos los valores para mostrar en la vista
-		List<String> listarGeneros = peliculasService.buscarGeneros();
-		Map<String, String> clasificaciones = peliculasService.buscarClasificacion();
-		Map<String, String> estatus = peliculasService.buscarEstado();
-		
+		Map<String, String> clasificaciones = Utileria.listarClasificaciones();
+		Map<String, String> estatus = Utileria.listarEstatus();
+
 		// Pasamos los valores a la vista.
-		model.addAttribute("listarGeneros", listarGeneros);
+		model.addAttribute("listarGeneros", Utileria.listarGeneros());
 		model.addAttribute("listaClasificacion", clasificaciones);
 		model.addAttribute("listarEstados", estatus);
-		
+
 		return FORMPELICULA;
 	}
 	
 	@PostMapping(value = "/save")
 	public String guardar(@Validated @ModelAttribute("pelicula") Pelicula pelicula,BindingResult result, 
 			@RequestParam("archivoImagen") MultipartFile file,Model model, RedirectAttributes flashAttributes, HttpServletRequest request) {
-
+		
 		/*
 		 * for(ObjectError error: result.getAllErrors()) {
 		 * LOGGER.info("El formulario contiene un error/es." + error); }
@@ -101,10 +106,14 @@ public class PeliculasController {
 		
 		if (result.hasErrors()) {
 			LOGGER.info("El formulario contiene errores.");
-
-			model.addAttribute("listarGeneros", peliculasService.buscarGeneros());
-			model.addAttribute("listaClasificacion", peliculasService.buscarClasificacion());
-			model.addAttribute("listarEstados", peliculasService.buscarEstado());
+			Map<String, String> clasificaciones = Utileria.listarClasificaciones();
+			Map<String, String> estatus = Utileria.listarEstatus();
+			
+			model.addAttribute("listarGeneros", Utileria.listarGeneros());
+			model.addAttribute("listaClasificacion", clasificaciones);
+			model.addAttribute("listarEstados", estatus);
+			
+			flashAttributes.addFlashAttribute("mensajeError", "No se ha podido almacenar correctamente la pelicula, vuelva a intentarlo nuevamente");
 			
 			return FORMPELICULA;
 		}
@@ -117,7 +126,8 @@ public class PeliculasController {
 			String nombreImagen = Utileria.guardarImagen(request, file);
 			pelicula.setImagen(nombreImagen);
 		}
-			
+				
+		detalleDao.save(pelicula.getDetalle());
 		peliculasService.insertar(pelicula);
 		
 		/* Nota: Cuando se utiliza un redirect en la página los model.addAttribute() no se mostrarán en pantalla ya que no vuelve al mismo formulario 

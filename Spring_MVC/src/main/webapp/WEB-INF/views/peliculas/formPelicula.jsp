@@ -64,7 +64,7 @@
           	<div class="col-sm-3">
             	<div class="form-group">
              	  <label for="titulo">Título</label>
-              		<form:input type="text" class="form-control" path="horario.titulo" id="titulo" required="required"
+              		<form:input type="text" class="form-control" path="titulo" id="titulo" required="required"
               			htmlEscape="true" />
               		<form:errors id="validacionMensaje" path="titulo" class="alert alert-danger"></form:errors>
             	</div>  

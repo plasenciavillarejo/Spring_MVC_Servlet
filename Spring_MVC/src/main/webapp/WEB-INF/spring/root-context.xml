@@ -20,8 +20,8 @@
 		que contenga la anotacíon @Service va a crear una nueva instancia. -->
 	<context:component-scan base-package="curso.spring.mvc.serviceImpl" />
 
-	<!-- 3.- Le indicamos donde vamos a almacenar el repositorio -->
-	<jpa:repositories base-package="curso.spring.mvc.repository"/>
+	<!-- 3.- Le indicamos donde vamos a almacenar los DAO -->
+	<jpa:repositories base-package="curso.spring.mvc.dao"/>
 
 	<!-- 4.- Configuración necesaria para la configuracióni de JPA -->
 
@@ -48,7 +48,9 @@
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 
+	<!-- Primero tienes que activar el manejo de transacciones con anotaciones.  -->
 
+	<tx:annotation-driven transaction-manager="transactionManager" /> 
 
 
 

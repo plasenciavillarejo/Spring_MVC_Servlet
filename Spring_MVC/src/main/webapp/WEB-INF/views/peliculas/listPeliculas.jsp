@@ -41,10 +41,15 @@
 				<h3>Listado de Peliculas</h3>
 			</div>
 			
-			<c:if test="${mensajeConfirmacion != null}">
-				<div id="alerta" class="alert alert-success" role="alert">${mensajeConfirmacion}</div>
-			</c:if>
-			
+			<c:choose>
+				<c:when test="${mensajeConfirmacion != null}">
+					<div id="alerta" class="alert alert-success" role="alert">${mensajeConfirmacion}</div>
+				</c:when>
+				<c:when test="${mensajeError != null}">
+					<div id="alertaError" class="alert alert-danger" role="alert">${mensajeError}</div>
+				</c:when>
+			</c:choose>
+							
 			<div class="panel-body">
 				<a href="${crearPeliculas}" class="btn btn-success" role="button"
 					title="Nueva Pelicula">Nueva</a>

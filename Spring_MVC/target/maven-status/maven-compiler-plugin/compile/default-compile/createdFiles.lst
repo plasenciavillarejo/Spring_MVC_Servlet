@@ -9,12 +9,14 @@ curso/spring/mvc/service/IBannerService.class
 curso/spring/mvc/service/IContactoService.class
 curso/spring/mvc/serviceImpl/NoticiaServiceImpl.class
 curso/spring/mvc/model/Banner.class
+curso/spring/mvc/service/IDetalleService.class
 curso/spring/mvc/serviceImpl/ContactoServiceImpl.class
 curso/spring/mvc/model/Noticia.class
 curso/spring/mvc/pruebaConexionBBDD/PruebaConexionJPA.class
 curso/spring/mvc/service/IHorarioService.class
 curso/spring/mvc/dao/IBannerDao.class
 curso/spring/mvc/model/Contacto.class
+curso/spring/mvc/serviceImpl/DetalleServiceImpl.class
 curso/spring/mvc/controller/HomeController.class
 curso/spring/mvc/model/Horario.class
 curso/spring/mvc/controller/NoticiasController.class
