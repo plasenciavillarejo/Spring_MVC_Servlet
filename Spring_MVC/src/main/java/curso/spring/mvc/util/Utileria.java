@@ -156,4 +156,19 @@ public class Utileria {
 		return estados;
 	}
 
+	// Listar Salas de los Horario en Peliculas
+	
+	public static List<String> listarSalas(){
+		List<String> listaSala = new ArrayList<>();
+		
+		listaSala.add("Sala Premium");
+		listaSala.add("Sala 1");
+		listaSala.add("Sala 2");
+		listaSala.add("Sala 3");
+		
+		return listaSala;
+		
+	}
+	
+	
 }

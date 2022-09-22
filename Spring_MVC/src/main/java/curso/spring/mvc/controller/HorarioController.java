@@ -28,6 +28,7 @@ import curso.spring.mvc.model.Horario;
 import curso.spring.mvc.model.Pelicula;
 import curso.spring.mvc.service.IHorarioService;
 import curso.spring.mvc.service.IPeliculasService;
+import curso.spring.mvc.util.Utileria;
 
 @Controller
 @RequestMapping(value = "/horario")
@@ -75,7 +76,7 @@ public class HorarioController {
 		
 		model.addAttribute("listarPelicluas", listPelicula);
 		model.addAttribute("relojHorario", hora);
-		model.addAttribute("listarSalas", horarioService.listaSalas());
+		model.addAttribute("listarSalas", Utileria.listarSalas());
 		
 		return HORARIOPRINCIPAL;
 	}
@@ -95,7 +96,7 @@ public class HorarioController {
 			}
 			
 			model.addAttribute("listarPelicluas", listPelicula);
-			model.addAttribute("listarSalas", horarioService.listaSalas());
+			model.addAttribute("listarSalas", Utileria.listarSalas());
 			
 			return HORARIOPRINCIPAL;
 		}
@@ -107,14 +108,12 @@ public class HorarioController {
 			
 			for(Pelicula peli: buscarPelicula) {
 				if(peli.getTitulo().equalsIgnoreCase(horario.getPelicula().getTitulo())) {
+					horario.setPelicula(peli);
 					horarioService.save(horario);
 					break;
 				}
 			}
 		}
-		
-				
-		
 		return "redirect:" + REDIRECIONHORARIOS;
 	}
 	
