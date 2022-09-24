@@ -39,5 +39,10 @@ public class PeliculasServiceImpl implements IPeliculasService {
 		peliculaDao.save(pelicula);
 	}
 
+	@Override
+	public void borrarPelicula(Pelicula pelicula) {
+		peliculaDao.delete(pelicula);
+	}
+
 	
 }

@@ -22,6 +22,9 @@ public class Detalle implements Serializable {
 	private String sinopsis;
 	private String trailer;
 	
+	@OneToOne(mappedBy="detalle")
+	private Pelicula pelicula;
+
 	public Detalle() {
 
 	}
@@ -66,6 +69,14 @@ public class Detalle implements Serializable {
 		this.trailer = trailer;
 	}
 
+	public Pelicula getPelicula() {
+		return pelicula;
+	}
+
+	public void setPelicula(Pelicula pelicula) {
+		this.pelicula = pelicula;
+	}
+	
 	private static final long serialVersionUID = 1L;
 
 }

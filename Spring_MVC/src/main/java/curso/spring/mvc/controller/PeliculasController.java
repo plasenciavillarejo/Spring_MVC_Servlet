@@ -3,9 +3,11 @@ package curso.spring.mvc.controller;
 import java.io.File;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -23,6 +25,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,6 +35,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import curso.spring.mvc.dao.IDetalleDao;
 import curso.spring.mvc.model.Detalle;
 import curso.spring.mvc.model.Pelicula;
+import curso.spring.mvc.service.IDetalleService;
 import curso.spring.mvc.service.IPeliculasService;
 import curso.spring.mvc.util.Utileria;
 import curso.spring.mvc.validator.PeliculasValidator;
@@ -44,7 +48,7 @@ public class PeliculasController {
 	private IPeliculasService peliculasService;
 	
 	@Autowired
-	private IDetalleDao detalleDao;
+	private IDetalleService detalleService;
 	
 	// Ubicacion donde se envia al usuario a consultar las páginas JSP.
 	public static final String FORMPELICULA = "peliculas/formPelicula";
@@ -127,7 +131,7 @@ public class PeliculasController {
 			pelicula.setImagen(nombreImagen);
 		}
 				
-		detalleDao.save(pelicula.getDetalle());
+		detalleService.insertarDetalle(pelicula.getDetalle());
 		peliculasService.insertar(pelicula);
 		
 		/* Nota: Cuando se utiliza un redirect en la página los model.addAttribute() no se mostrarán en pantalla ya que no vuelve al mismo formulario 
@@ -148,9 +152,47 @@ public class PeliculasController {
 		return "redirect:"+REEDIRECCIONPELICULAS;
 	}
 	
+	@GetMapping(value = "/editarPelicula/{id}")
+	public String editarPelicula(@PathVariable("id") int id,Model model) {
+		
+		LOGGER.info("Se procede a editar la pelicula con el id: " + id);
+		
+		Pelicula buscarPelicula = peliculasService.buscarPorId(id);
+		Map<String, String> clasificaciones = Utileria.listarClasificaciones();
+		Map<String, String> estatus = Utileria.listarEstatus();
+		
+		// Recorremos la clase donde está los HashMap para poder 
+		/*
+		for(Map.Entry<String, String> peli: clasificaciones.entrySet()) {
+			if(buscarPelicula.getClasificacion().equalsIgnoreCase(peli.getKey())) {
+				clasificaciones.put(peli.getKey(), peli.getValue());
+			}
+		}
+		*/
+		model.addAttribute("listarGeneros", Utileria.listarGeneros());
+		model.addAttribute("listaClasificacion", clasificaciones);
+		model.addAttribute("listarEstados", estatus);
+		model.addAttribute("pelicula", buscarPelicula);
+		model.addAttribute("mensajeConfirmacion", "La película se ha editado correctamente.");
+
+		model.addAttribute("edicion", "si");
+		
+		return FORMPELICULA;
+	}
 	
 	
-	
+	@GetMapping(value = "/eliminarPelicula/{id}")
+	public String borrarPelicula(@PathVariable("id") int id, Model model) {
+		
+		Pelicula buscarPelicula = peliculasService.buscarPorId(id);
+		Detalle buscarDetalle = detalleService.buscarPorId(buscarPelicula.getDetalle().getId());
+		if(buscarPelicula != null) {
+			LOGGER.info("Se procede a borrar la pelicula con el id: " + id);
+			peliculasService.borrarPelicula(buscarPelicula);
+			detalleService.borrarDetalle(buscarDetalle);
+		}		
+		return "redirect:"+REEDIRECCIONPELICULAS;
+	}
 	
 	
 }

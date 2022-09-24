@@ -23,6 +23,8 @@
 <!-- #### -->
 <spring:url value="/peliculas/save" var="guardarPelicula" />
 <spring:url value="/peliculas/create" var="crearPeliculas" />
+<spring:url value="/peliculas/editarPelicula" var="editarPelicula" />
+<spring:url value="/peliculas/eliminarPelicula" var="eliminarPelicula" />
 <spring:url value="/" var="volverAtras"/>
 
 </head>
@@ -43,7 +45,11 @@
 			
 			<c:choose>
 				<c:when test="${mensajeConfirmacion != null}">
-					<div id="alerta" class="alert alert-success" role="alert">${mensajeConfirmacion}</div>
+					<c:if test="${edicion != 'si'}">
+						<div id="alerta" class="alert alert-success" role="alert">${mensajeConfirmacion}</div>
+					</c:if>
+					<c:if test="${edicion eq 'si'} "></c:if>
+						<div id="alerta" class="alert alert-success" role="alert">${mensajeConfirmacion}</div>
 				</c:when>
 				<c:when test="${mensajeError != null}">
 					<div id="alertaError" class="alert alert-danger" role="alert">${mensajeError}</div>
@@ -85,10 +91,10 @@
 									</c:otherwise>
 								</c:choose>
 								<td>
-									<a href="#" class="btn btn-success btn-sm" role="button" title="Edit">
+									<a href="${editarPelicula}/${listaPeliculas.id}" class="btn btn-success btn-sm" role="button" title="Edit">
 										<span class="glyphicon glyphicon-pencil"></span>
 									</a> 
-									<a href="#" class="btn btn-danger btn-sm" role="button" title="Eliminar">
+									<a href="${eliminarPelicula}/${listaPeliculas.id}" class="btn btn-danger btn-sm" role="button" title="Eliminar">
 										<span class="glyphicon glyphicon-trash"></span>
 									</a>
 								</td>

@@ -13,6 +13,7 @@ public interface IPeliculasService {
 	
 	public void insertar(Pelicula pelicula);
 	
+	public void borrarPelicula(Pelicula pelicula);
 	
 	
 }

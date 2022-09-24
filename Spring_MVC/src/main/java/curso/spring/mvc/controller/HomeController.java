@@ -134,8 +134,6 @@ public class HomeController {
 				}
 				listaFinalHorarios.add(guardarDatos);
 			}
-			
-			
 			model.addAttribute("listarHorarios", listaFinalHorarios);
 			model.addAttribute("pelicula", pelicula);
 
