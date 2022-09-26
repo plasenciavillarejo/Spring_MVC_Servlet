@@ -37,13 +37,14 @@ var formularioContacto =  '${formularioContacto}';
 			}, 3000);
 		};
 		
+		/*
 		if(mensajeError !== ""){
 			console.log("Entrando por la función de mensaje error");
 			setTimeout(function() {
 				$("#alertaError").fadeOut(1500);
 			}, 3000);
 		};
-
+		*/
 		console.log(formularioContacto)
 		
 		// Abrir popup despues de enviar el formulario de contacto

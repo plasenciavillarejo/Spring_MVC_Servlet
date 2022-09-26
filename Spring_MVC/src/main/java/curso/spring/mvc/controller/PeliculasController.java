@@ -184,6 +184,8 @@ public class PeliculasController {
 	@GetMapping(value = "/eliminarPelicula/{id}")
 	public String borrarPelicula(@PathVariable("id") int id, Model model) {
 		
+		// METER POPUP PARA PREGUNTAR AL USUARIO SI ESTÁ SEGURO DE BORRAR LA PELICULA CON SU DETALLE.
+		
 		Pelicula buscarPelicula = peliculasService.buscarPorId(id);
 		Detalle buscarDetalle = detalleService.buscarPorId(buscarPelicula.getDetalle().getId());
 		if(buscarPelicula != null) {

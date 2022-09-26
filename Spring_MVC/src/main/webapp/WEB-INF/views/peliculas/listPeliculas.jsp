@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -30,7 +29,6 @@
 </head>
 
 <body>
-
 
 	<!-- Inculimos la cabecera -->
 	<!-- ##################### -->
@@ -91,12 +89,47 @@
 									</c:otherwise>
 								</c:choose>
 								<td>
-									<a href="${editarPelicula}/${listaPeliculas.id}" class="btn btn-success btn-sm" role="button" title="Edit">
+									<a href="${editarPelicula}/${listaPeliculas.id}" class="btn btn-success btn-sm" 
+										role="button" title="Edit">
 										<span class="glyphicon glyphicon-pencil"></span>
 									</a> 
-									<a href="${eliminarPelicula}/${listaPeliculas.id}" class="btn btn-danger btn-sm" role="button" title="Eliminar">
-										<span class="glyphicon glyphicon-trash"></span>
-									</a>
+																	
+									<!-- Boton que abre el modal para confirmar que se procede a borrar una película. -->
+									<button  type="button" onclick="javascript:obtenerId('${listaPeliculas.id}');" 
+										class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">
+										<span class="glyphicon glyphicon-trash"></span>	
+									</button> 
+									
+									<div class="modal fade" id="exampleModal" tabindex="-1"
+										role="dialog" aria-labelledby="exampleModalLabel"
+										aria-hidden="true">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="exampleModalLabel">Eliminar una Película</h5>
+													<button type="button" class="close" data-dismiss="modal"
+														aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+												<div class="modal-body">¿Estás seguro que desea eliminar una película?</div>
+												<input type="hidden" id="idPeliculaEliminar"/>
+											<!--  <span aria-hidden="true" id="idPeliculaEliminar"></span>-->	
+												<div class="modal-footer">
+													<button type="button" class="btn btn-success btn-sm" 
+														 title="Eliminar"
+														onclick="javascript:confirmarEliminar();">Sí</button>
+													<button type="button" class="btn btn-danger btn-sm" 
+														data-dismiss="modal">No</button>
+												</div>
+											</div>
+										</div>
+									</div>
+
+
+
+
+
 								</td>
 							</tr>
 						</c:forEach>
@@ -112,7 +145,22 @@
 
 	</div>
 	<!-- /container -->
+<script type="text/javascript">
 
+	var urlEliminar = '${eliminarPelicula}'
+
+	function obtenerId(id) {
+		$('#idPeliculaEliminar').text(id);
+	}
+
+	function confirmarEliminar() {
+		location.href = urlEliminar + '/' + $('#idPeliculaEliminar').text();
+	}
+	
+	
+</script>
 </body>
+
+
 
 </html>
