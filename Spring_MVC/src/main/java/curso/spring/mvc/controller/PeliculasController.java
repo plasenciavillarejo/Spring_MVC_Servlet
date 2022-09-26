@@ -130,9 +130,6 @@ public class PeliculasController {
 			String nombreImagen = Utileria.guardarImagen(request, file);
 			pelicula.setImagen(nombreImagen);
 		}
-				
-		detalleService.insertarDetalle(pelicula.getDetalle());
-		peliculasService.insertar(pelicula);
 		
 		/* Nota: Cuando se utiliza un redirect en la página los model.addAttribute() no se mostrarán en pantalla ya que no vuelve al mismo formulario 
 		 donde ha sucedido la acción. Para que dicho mensaje salga en pantalla deberemos de utilizar el RedirectAttributes.
@@ -142,22 +139,46 @@ public class PeliculasController {
 		
 		model.addAttribute("mensajeConfirmacion", "La pelicula se ha almacenado correctamente");
 		*/
-		flashAttributes.addFlashAttribute("mensajeConfirmacion", "La pelicula se ha almacenado correctamente");
+		
+		//String mensajeFlash = (pelicula.getId() != 0L)? "Película creada con éxito." : "Se ha actualizado la película con éxito.";
+		String mensajeFlash = "";
+		if(peliculasService.buscarPorId(pelicula.getId()) == null) {
+			mensajeFlash = "Película creada con éxito.";
+		}else {
+			mensajeFlash = "Se ha actualizado la película con éxito.";
+		}
+		
+		
+		flashAttributes.addFlashAttribute("mensajeConfirmacion", mensajeFlash);
+			
+		detalleService.insertarDetalle(pelicula.getDetalle());
+		peliculasService.insertar(pelicula);
 		
 		}catch (Exception e) {
 			LOGGER.info("NO se ha podido almacenar correctamente la pelicula debido al siguiente error: " + e.getMessage());
 		}
 		
-		
 		return "redirect:"+REEDIRECCIONPELICULAS;
 	}
 	
 	@GetMapping(value = "/editarPelicula/{id}")
-	public String editarPelicula(@PathVariable("id") int id,Model model) {
+	public String editarPelicula(@PathVariable("id") int id,Model model, RedirectAttributes flashAttributes) {
 		
 		LOGGER.info("Se procede a editar la pelicula con el id: " + id);
 		
-		Pelicula buscarPelicula = peliculasService.buscarPorId(id);
+		Pelicula buscarPelicula = null; 
+		
+		if (id > 0) {
+			buscarPelicula = peliculasService.buscarPorId(id);
+			if (buscarPelicula == null) {
+				flashAttributes.addFlashAttribute("Error", "El cliente no existe en la BD");
+			}
+		} else {
+			flashAttributes.addFlashAttribute("Error", "El ID del cliente no puede ser 0.");
+			return MOSTRARPELICULAS;
+		}
+		
+		
 		Map<String, String> clasificaciones = Utileria.listarClasificaciones();
 		Map<String, String> estatus = Utileria.listarEstatus();
 		
@@ -173,25 +194,25 @@ public class PeliculasController {
 		model.addAttribute("listaClasificacion", clasificaciones);
 		model.addAttribute("listarEstados", estatus);
 		model.addAttribute("pelicula", buscarPelicula);
-		model.addAttribute("mensajeConfirmacion", "La película se ha editado correctamente.");
-
-		model.addAttribute("edicion", "si");
 		
 		return FORMPELICULA;
 	}
 	
 	
 	@GetMapping(value = "/eliminarPelicula/{id}")
-	public String borrarPelicula(@PathVariable("id") int id, Model model) {
-		
-		// METER POPUP PARA PREGUNTAR AL USUARIO SI ESTÁ SEGURO DE BORRAR LA PELICULA CON SU DETALLE.
-		
+	public String borrarPelicula(@PathVariable("id") int id, RedirectAttributes flashAttributes) {
+				
 		Pelicula buscarPelicula = peliculasService.buscarPorId(id);
 		Detalle buscarDetalle = detalleService.buscarPorId(buscarPelicula.getDetalle().getId());
 		if(buscarPelicula != null) {
 			LOGGER.info("Se procede a borrar la pelicula con el id: " + id);
 			peliculasService.borrarPelicula(buscarPelicula);
 			detalleService.borrarDetalle(buscarDetalle);
+			String mensajeFlash = "Película eliminada con éxito.";
+			
+			flashAttributes.addFlashAttribute("mensajeConfirmacion", mensajeFlash);
+			
+			
 		}		
 		return "redirect:"+REEDIRECCIONPELICULAS;
 	}
