@@ -20,6 +20,7 @@
 
 <!-- URLS -->
 <!-- #### -->
+<spring:url value="/peliculas/listarPeliculas" var="listaPaginacion" />
 <spring:url value="/peliculas/save" var="guardarPelicula" />
 <spring:url value="/peliculas/create" var="crearPeliculas" />
 <spring:url value="/peliculas/editarPelicula" var="editarPelicula" />
@@ -116,15 +117,32 @@
 											</div>
 										</div>
 									</div>
-
-
-
-
-
 								</td>
 							</tr>
 						</c:forEach>
 					</table>
+
+					<nav aria-label="">
+						<ul class="pager">
+							<li><c:choose>
+									<c:when test="${primera}">
+										<a class="btn disabled"
+											href="${listaPaginacion}?page=${pagina -1 }">Anterior</a>
+									</c:when>
+									<c:otherwise>
+										<a href="${listaPaginacion}?page=${pagina -1 }">Anterior</a>
+									</c:otherwise>
+								</c:choose></li>
+							<li><c:choose>
+									<c:when test="${ultima}">
+										<a class="btn disabled" href="${listaPaginacion}?page=${pagina + 1 }">Siguiente</a>
+									</c:when>
+									<c:otherwise>
+										<a href="${listaPaginacion}?page=${pagina + 1 }">Siguiente</a>
+									</c:otherwise>
+								</c:choose></li>
+						</ul>
+					</nav>
 				</div>
 			</div>
 		</div>
@@ -140,6 +158,8 @@
 
 	var urlEliminar = '${eliminarPelicula}'
 
+	var lista = '${lista}'
+	
 	function obtenerId(id) {
 		$('#idPeliculaEliminar').text(id);
 	}

@@ -1,13 +1,9 @@
 package curso.spring.mvc.controller;
 
-import java.io.File;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,11 +11,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,10 +25,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import curso.spring.mvc.dao.IDetalleDao;
 import curso.spring.mvc.model.Detalle;
 import curso.spring.mvc.model.Pelicula;
 import curso.spring.mvc.service.IDetalleService;
@@ -42,6 +38,7 @@ import curso.spring.mvc.validator.PeliculasValidator;
 
 @Controller
 @RequestMapping("/peliculas")
+@SessionAttributes("Peliculas")
 public class PeliculasController {
 
 	@Autowired
@@ -59,6 +56,8 @@ public class PeliculasController {
 	
 	public static final Logger LOGGER = LoggerFactory.getLogger(NoticiasController.class);
 	
+	private static String LISTADOPAGINADO = "";
+
 	
 	/* Se encarga de validar el formato de la fecha para indicarlo en formato dd-MM-yyyy */
 	@InitBinder
@@ -71,19 +70,42 @@ public class PeliculasController {
 		
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(format, false));
 		
-		binder.setValidator(new PeliculasValidator());
+		if(!LISTADOPAGINADO.equalsIgnoreCase("si")) {
+			binder.setValidator(new PeliculasValidator());
+		}
 	}
 		
-	
+	/* Método sin paginador
 	@GetMapping(value = "/listarPeliculas")
 	public String mostrarIndex(Model model) {
-		List<Pelicula> listarPeliculas = peliculasService.buscarTodas();
+		List<Pelicula> peliculas = peliculasService.buscarTodas();
 
-		model.addAttribute("listarPeliculas", listarPeliculas);
+		model.addAttribute("lista", peliculas);
 
 		return MOSTRARPELICULAS;
 	}
-
+	*/ 
+	
+	
+	// Lista con paginador.
+	@GetMapping(value = "/listarPeliculas")
+	public String mostrarIndex(Model model, Pageable page) {
+			
+		Page<Pelicula> listarPeliculas = peliculasService.buscarTodas(page);
+		
+		// listarPeliculas.isEmpty()
+		
+		
+		model.addAttribute("pagina", listarPeliculas.getNumber());
+		model.addAttribute("ultima", listarPeliculas.isLast());
+		model.addAttribute("primera", listarPeliculas.isFirst());
+		model.addAttribute("listarPeliculas", listarPeliculas.getContent());
+		
+		LISTADOPAGINADO = "si";
+		return MOSTRARPELICULAS;
+	}
+	
+	
 	@GetMapping(value = "/create")
 	public String crear(@ModelAttribute("pelicula") Pelicula pelicula, Model model) {
 

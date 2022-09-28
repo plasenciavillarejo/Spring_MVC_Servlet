@@ -40,7 +40,7 @@
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="${listarPeliculas}">Peliculas</a></li>
+					<li><a href="${listarPeliculas}?page=0">Peliculas</a></li>
 					<li><a href="${listarBanners}">Banners</a></li>
 					<li><a href="${contacto}">Contacto</a></li>
 					<li><a href="${horario}">Horarios</a></li>
