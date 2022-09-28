@@ -1,8 +1,10 @@
 package curso.spring.mvc.util;
 
 import java.io.File;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -113,7 +115,17 @@ public class Utileria {
 
 		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
 		Date dataFormateada = formato.parse(fechaEstreno);
+	
+		return dataFormateada;
+	}
+	
+	public static Date pasarFechasDate(List<String> fechaEstreno) throws ParseException {
 
+		SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+		Date dataFormateada = null;
+		for(String a: fechaEstreno) {
+			dataFormateada = formato.parse(a);
+		}
 		return dataFormateada;
 	}
 

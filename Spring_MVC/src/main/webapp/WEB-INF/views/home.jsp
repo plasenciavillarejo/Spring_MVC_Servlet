@@ -155,9 +155,8 @@
               <span class="label label-default">${pelicula.duracion} min</span>
               <span class="label label-default">${pelicula.genero}</span>
             </h4>  
-                   
-			
-			<p><a class="btn btn-sm btn-primary" href="detail/${pelicula.id}/${fechaBusqueda}" role="button">Consulta Horarios &raquo;</a></p>
+            
+ 			<p><a class="btn btn-sm btn-primary" href="detail/${pelicula.id}/${fechaBusqueda}" role="button">Consulta Horarios para hoy &raquo;</a></p>
 			
 			 <%-- Enviamos la petición en formato @RequestParam --%>
 			<%--

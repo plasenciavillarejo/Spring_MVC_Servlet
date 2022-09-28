@@ -4,13 +4,19 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,7 +44,7 @@ public class HomeController {
 	
 	// Buenas Prácticas.
 
-	public static final Logger LOGGER = LoggerFactory.getLogger(NoticiasController.class);
+	public static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
 	
 	
 	// Redirecciones a Página Webs.
@@ -49,7 +55,7 @@ public class HomeController {
 	// Variable global para permitir dar formato a las fechas
 	private static final SimpleDateFormat FORMATOFECHAS = new SimpleDateFormat("dd-MM-yyyy");
 	
-	/*
+	/* 
 	 * @RequestMapping(value = "/home", method = RequestMethod.GET) public String
 	 * goHome() { return VISTAHOME; }
 	 */
@@ -67,6 +73,7 @@ public class HomeController {
 			Consultar Horarios. */
 		model.addAttribute("fechas", fechas);
 		model.addAttribute("fechaBusqueda", FORMATOFECHAS.format(new Date()));
+		
 		model.addAttribute("peliculas", peliculas);
 		model.addAttribute("banners", banners);
 		model.addAttribute("vistaPrincipal", "Si");
@@ -88,25 +95,35 @@ public class HomeController {
 
 		// Solo mostramos las peliculas filtras por fecha
 		List<Pelicula> peliculasPorFecha = new ArrayList<>();
-
+		List<Horario> buscarHorarios = horarioService.listarHorarios();
+		List<Pelicula> contarPeliculas = new ArrayList<>();
+		
 		for (Pelicula peli : peliculas) {
-			String fechaString = Utileria.pasarFechaString(peli.getFechaEstreno());
-
-			if (fecha.equalsIgnoreCase(fechaString)) {
-				// Volvemos a pasar la fecha de String a date y guardamos la película.
-				Date fechaDate = Utileria.pasarFechasDate(fecha);
-				peli.setFechaEstreno(fechaDate);
-				peliculasPorFecha.add(peli);
+			for (Horario hora : buscarHorarios) {
+				if (peli.getTitulo().equalsIgnoreCase(hora.getPelicula().getTitulo())) {
+					String fechaString = Utileria.pasarFechaString(hora.getFecha());
+					if (fecha.equalsIgnoreCase(fechaString)) {
+						// Volvemos a pasar la fecha de String a date y guardamos la película.
+						Date fechaDate = Utileria.pasarFechasDate(fecha);
+						peli.setFechaEstreno(fechaDate);
+						peliculasPorFecha.add(peli);
+					}
+				}
 			}
 		}
-		model.addAttribute("peliculas", peliculasPorFecha);
+		
+		
+		// construye un conjunto a partir de elementos de la lista sin duplicados 
+        Set<Pelicula> set = new LinkedHashSet<>(peliculasPorFecha);
+		
+        // Creamos una Lista sin duplicados.
+        List<Pelicula> peliculaSinDuplicados = new ArrayList<>(set);
+
+		
+		model.addAttribute("peliculas", peliculaSinDuplicados);
 
 		return VISTAHOME;
 	}
-	
-	/* ################### INICIO ######################   */
-	/* ### Mismo Métodos Utiliznado de diferente forma ### */
-	
 	
 	@RequestMapping(value = "/detail/{id}/{fecha}", method = RequestMethod.GET)
 	public String mostrarDetalle(@PathVariable("id") int id, @PathVariable("fecha") String fechaPeliculas,
@@ -120,20 +137,27 @@ public class HomeController {
 		try {
 			pelicula = servicioPelicula.buscarPorId(id);
 			buscarHorarios = horarioService.listarHorarios();
-			
-			
+
 			List<Horario> listaFinalHorarios = new ArrayList<>();
 			
-			for(Horario hora: buscarHorarios) {
+			for (Horario hora : buscarHorarios) {
 				Horario guardarDatos = new Horario();
-				if(pelicula.getTitulo().equalsIgnoreCase(hora.getPelicula().getTitulo())) {
+				if (pelicula.getTitulo().equalsIgnoreCase(hora.getPelicula().getTitulo())
+						&& fechaPeliculas.equalsIgnoreCase(Utileria.pasarFechaString(hora.getFecha()))) {
 					guardarDatos.setFecha(hora.getFecha());
 					guardarDatos.setHora(hora.getHora());
 					guardarDatos.setPrecio(hora.getPrecio());
-					guardarDatos.setsala(hora.getsala());	
+					guardarDatos.setsala(hora.getsala());
+
+					listaFinalHorarios.add(guardarDatos);
 				}
-				listaFinalHorarios.add(guardarDatos);
+
 			}
+			if(listaFinalHorarios.isEmpty()) {
+				model.addAttribute("vacia", "Si");
+			}
+			
+			model.addAttribute("fechaPeliculas", Utileria.pasarFechasDate(fechaPeliculas));
 			model.addAttribute("listarHorarios", listaFinalHorarios);
 			model.addAttribute("pelicula", pelicula);
 
@@ -143,7 +167,12 @@ public class HomeController {
 		return VISTADETALLE;
 	}
 
-	 
+	@InitBinder
+	public void initBinder (WebDataBinder binder) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+	}
+	
 	
 	/* Utilizando los parámetros con @RequestParam*/
 	/*

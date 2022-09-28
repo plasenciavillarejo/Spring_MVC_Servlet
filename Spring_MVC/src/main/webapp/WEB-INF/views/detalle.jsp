@@ -39,42 +39,44 @@
 			<!-- Marketing messaging -->
 			<div class="container marketing">
 
-				<div class="page-header">
-					<h2>${pelicula.titulo}</h2>
+			<div class="page-header">
+				<h2>${pelicula.titulo}</h2>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<p class="text-center">
+						<img class="img-rounded"
+							src="${urlPublic}/images/${pelicula.imagen}"
+							alt="Generic placeholder image" width="155" height="220">
+					</p>
 				</div>
-				<div class="row">
-					<div class="col-sm-3">
-						<p class="text-center">
-							<img class="img-rounded" src="${urlPublic}/images/${pelicula.imagen}" alt="Generic placeholder image" width="155" height="220">            
-						</p>
-					</div>
-					<div class="col-sm-9">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h3 class="panel-title">DETALLES</h3>
-							</div>
-							<div class="panel-body">                           
-								<p>
-									Título Original : ${pelicula.titulo} <br>
-									Actores : ${pelicula.detalle.actores} <br>
-									Director: ${pelicula.detalle.director} <br>                  
-									Clasificación: ${pelicula.clasificacion} <br>
-									Duración: ${pelicula.duracion} minutos <br>
-									Género: ${pelicula.genero} <br>                  
-									Fecha Estreno: <fmt:formatDate value="${pelicula.fechaEstreno}" pattern="dd-MM-yyyy"/>
-								</p> 
+				<div class="col-sm-9">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">DETALLES</h3>
+						</div>
+						<div class="panel-body">
+							<p>
+								Título Original : ${pelicula.titulo} <br>
+								Actores : ${pelicula.detalle.actores} <br>
+								Director: ${pelicula.detalle.director} <br>                  
+								Clasificación: ${pelicula.clasificacion} <br>
+								Duración: ${pelicula.duracion} minutos <br>
+								Género: ${pelicula.genero} <br>                  
+								Fecha Estreno: <fmt:formatDate value="${pelicula.fechaEstreno}" pattern="dd-MM-yyyy"/>
+							</p>
 
-							</div>
-						</div>                          
+						</div>
 					</div>
 				</div>
+			</div>
 
-			<c:forEach items="${listarHorarios}" var="listHorarios">
+			<c:if test="${vacia != 'Si' }">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title">
-							<span class="label label-success">
-								<fmt:formatDate value="${listHorarios.fecha}" pattern="dd-MM-yyyy"/>
+							<span class="label label-success"> 
+								<fmt:formatDate value="${fechaPeliculas}" pattern="dd-MM-yyyy" />
 							</span>
 						</h3>
 					</div>
@@ -88,18 +90,18 @@
 								</tr>
 							</thead>
 							<tbody>
-						
-								<tr>
-									<td>${listHorarios.hora}</td>
-									<td>${listHorarios.sala}</td>
-									<td>${listHorarios.precio} $</td>
-								</tr>
-						
+							<c:forEach items="${listarHorarios}" var="listHorarios">
+									<tr>
+										<td>${listHorarios.hora}</td>
+										<td>${listHorarios.sala}</td>
+										<td>${listHorarios.precio}$</td>
+									</tr>
+							</c:forEach>
 							</tbody>
 						</table>
 					</div>
 				</div>
-			</c:forEach>
+			</c:if>
 
 			<div class="row">
 					<div class="col-sm-7">

@@ -1,5 +1,6 @@
 package curso.spring.mvc.serviceImpl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,16 @@ public class HorarioServiceImpl implements IHorarioService{
 	public List<Horario> listarHorarios() {
 		return horarioDao.findAll();
 	}
-	
+/*
+	@Override
+	public List<Horario> buscarHorario(int id, Date fecha) {
+		return horarioDao.buscarHorario(id,fecha);
+	}
+*/
+
+	@Override
+	public List<Horario> findByPelicula_IdOrderByHora(int idPelicula) {
+		return horarioDao.findByPelicula_IdOrderByHora(idPelicula);
+	}	
 	
 }

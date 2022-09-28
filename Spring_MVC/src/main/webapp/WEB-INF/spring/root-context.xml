@@ -27,7 +27,8 @@
 
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" /> <!-- com.mysql.jdbc.Driver com.mysql.cj.jdbc.Driver -->
-		<property name="url" value="jdbc:mysql://localhost:3306/cineapp?useSSL=false" />
+		<!-- <property name="url" value="jdbc:mysql://localhost:3306/cineapp?useSSL=false&amp;serverTimezone=Europe/Madrid" /> -->
+		<property name="url" value="jdbc:mysql://localhost/cineapp?serverTimezone=Europe/Madrid&amp;allowPublicKeyRetrieval=true&amp;useSSL=false" />
 		<property name="username" value="root" />
 		<property name="password" value="Plasencia_1" />
 	</bean>
