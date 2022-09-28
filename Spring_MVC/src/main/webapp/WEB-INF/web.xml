@@ -11,30 +11,28 @@
 	DispatcherServlet: Es el encargado de recibir todas las peticiones de nuestra aplicación. 	-->
 	
 	<servlet>
-		<servlet-name>dispatcher</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-		<init-param>
-			<param-name>contextConfigLocation</param-name>
-			<param-value>/WEB-INF/spring/dispatcher-servlet.xml</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
+	<servlet-name>dispatcher</servlet-name>
+	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	<init-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring/dispatcher-servlet.xml</param-value>
+	</init-param>
+	<load-on-startup>1</load-on-startup>
 		
 		
 		<!--  Configuración para permitir subir ficheros -->
 		<!--  ########################################## -->
 
-		<!-- Formato windows 
-		<multipart-config> 
-			<location>c:\tmp</location> 
-		</multipart-config> -->
+	<!-- Formato windows 
+	<multipart-config> 
+		<location>c:\tmp</location> 
+	</multipart-config> 
+	-->
 
 		<!-- Formato Unix -->
-		<multipart-config>
-			<location>/Users/joseplasenciavillarejo/Downloads/images</location>
-		</multipart-config>
-		
-		
-		
+	<multipart-config>
+		<location>/Users/joseplasenciavillarejo/Downloads/images</location>
+	</multipart-config>
 		
 	</servlet>
 	<servlet-mapping>
@@ -88,5 +86,13 @@
     
 	<!-- #################################################################################################################### -->
 	
+	<!-- ### Configuración de paginas de error por defecto  -->
+    <error-page>
+       <error-code>404</error-code>
+       <location>/WEB-INF/views/error/404.jsp</location>
+    </error-page>
+
+
+	<!-- #################################################################################################################### -->
 
 </web-app>

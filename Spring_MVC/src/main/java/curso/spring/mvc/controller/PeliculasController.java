@@ -92,13 +92,15 @@ public class PeliculasController {
 	public String mostrarIndex(Model model, Pageable page) {
 			
 		Page<Pelicula> listarPeliculas = peliculasService.buscarTodas(page);
-		
-		// listarPeliculas.isEmpty()
-		
+				
 		
 		model.addAttribute("pagina", listarPeliculas.getNumber());
-		model.addAttribute("ultima", listarPeliculas.isLast());
 		model.addAttribute("primera", listarPeliculas.isFirst());
+		model.addAttribute("siguiente", listarPeliculas.hasNext());
+		model.addAttribute("atras", listarPeliculas.hasPrevious());
+		model.addAttribute("ultima", listarPeliculas.isLast());
+		model.addAttribute("ultimaPagina", listarPeliculas.getTotalPages());
+		
 		model.addAttribute("listarPeliculas", listarPeliculas.getContent());
 		
 		LISTADOPAGINADO = "si";

@@ -15,7 +15,10 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.data.domain.Page;
 import org.springframework.web.multipart.MultipartFile;
+
+import curso.spring.mvc.model.Pelicula;
 
 public class Utileria {
 
@@ -181,6 +184,16 @@ public class Utileria {
 		return listaSala;
 		
 	}
+	
+	
+	public static Page<Pelicula> paginador(int pagina, boolean primera, boolean ultima){
+	
+		
+		
+		return null;
+	}
+	
+	
 	
 	
 }

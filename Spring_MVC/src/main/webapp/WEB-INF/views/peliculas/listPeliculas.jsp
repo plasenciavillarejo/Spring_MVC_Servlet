@@ -126,19 +126,57 @@
 						<ul class="pager">
 							<li><c:choose>
 									<c:when test="${primera}">
-										<a class="btn disabled"
-											href="${listaPaginacion}?page=${pagina -1 }">Anterior</a>
+										<a class="btn disabled">Primera Página</a>
 									</c:when>
 									<c:otherwise>
-										<a href="${listaPaginacion}?page=${pagina -1 }">Anterior</a>
+										<a href="${listaPaginacion}?page=0">Primera Página</a>
 									</c:otherwise>
 								</c:choose></li>
+						
+							<li><c:choose>
+									<c:when test="${primera}">
+										<a class="btn disabled">Anterior</a>
+									</c:when>
+									<c:otherwise>
+										<a href="${listaPaginacion}?page=${pagina - 1 }">Anterior</a>
+									</c:otherwise>
+								</c:choose></li>
+							 
+							 <!--	
+							<li><c:choose>
+									<c:when test="${siguiente}">
+										<a href="${listaPaginacion}?page=${pagina + 1 }">1</a>
+									</c:when>
+									<c:when test="${atras}">
+										<a class="btn disabled">1</a>
+									</c:when>
+								</c:choose>
+							</li>	
+							<li><c:choose>
+									<c:when test="${siguiente}">
+										<a href="${listaPaginacion}?page=${pagina + 2 }">2</a>
+									</c:when>
+									<c:otherwise>
+										<a class="btn disabled">2</a>
+									</c:otherwise>
+								</c:choose>
+							</li>
+							-->
 							<li><c:choose>
 									<c:when test="${ultima}">
 										<a class="btn disabled" href="${listaPaginacion}?page=${pagina + 1 }">Siguiente</a>
 									</c:when>
 									<c:otherwise>
 										<a href="${listaPaginacion}?page=${pagina + 1 }">Siguiente</a>
+									</c:otherwise>
+								</c:choose></li>
+								
+							<li><c:choose>
+									<c:when test="${ultima}">
+										<a class="btn disabled">Última</a>
+									</c:when>
+									<c:otherwise>
+										<a href="${listaPaginacion}?page=${ultimaPagina - 1}">Última</a>
 									</c:otherwise>
 								</c:choose></li>
 						</ul>

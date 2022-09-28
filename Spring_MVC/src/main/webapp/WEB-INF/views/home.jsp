@@ -22,7 +22,7 @@
 	<!-- URLS -->
 	<!-- #### -->
 	<!-- Añadimos la url para acceder a la carpeta resources donde se ubican los archivos estáticos. -->
-	<spring:url value="/resources" var="urlPublic" />	
+	<spring:url value="/resources" var="urlPublic" />
 	<spring:url value="/search" var="urlSearch" />
 
   </head>
