@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<b:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:b="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<!-- 1.- El tag 'http/' sirve para proteger todas las URLS de la aplicación, al realizar cualquier petición ya sea @Get o @Post se va a solicitiar el usuario y contraseña
+		para poder visualizar la información (En caso de que no se esté logueado para ello) -->
+	<http auto-config="true">
+	<!-- Declaramos todos los recursos que estaran protegidos -->
+		<intercept-url pattern="/peliculas/*" access="hasAnyAuthority('EDITOR')" />
+		<intercept-url pattern="/horario/*" access="hasAnyAuthority('EDITOR')" />
+		<intercept-url pattern="/noticias/*" access="hasAnyAuthority('EDITOR')" />
+		<intercept-url pattern="/contacto/*" access="hasAnyAuthority('EDITOR','GERENTE')" />
+		<intercept-url pattern="/" access="hasAnyAuthority('EDITOR','GERENTE')" />
+		<intercept-url pattern="/banners/*" access="hasAnyAuthority('GERENTE')" />
+	
+		<!-- 2.- Indicamos nuestra página de inicio de login personalizada. 
+			2.1.- login-page: Se le indica el método del controlador "HomesController.java" encargado de rederigir la página de login. 
+					Se accede a el mediante: 
+						a) "/login" (public String mostrarLogin() {} )
+						
+			2.2.- Por defecto si no especificamos ninguna URL de destino despues de loguearnos, será REDIRECCINADO automaticamente al directorio raíz de nuestra aplicación,
+					si se desea configurar para que se redirecciona a otro sitio deberemos de añadir: "LoginController.java"
+						a) default-target-url:"URL destino"; de está forma evitamos que rediriga al directorio raíz.
+				
+				Nota: Todo es a nivel de controlador tanto el login-page como el default-target-url
+					
+		-->
+		<form-login login-page="/login"
+			default-target-url="/admin/mensajeBienvenida" />
+	
+	</http>
+	
+	<!-- 3.- El autenticahtion-manager es una forma de indicarle a spring-security de donde va a recuperar los usuarios y contraseñas que van a tener acceso a la aplicación.
+		En este momento se le está declarando dos usuario en la memoría. 
+		
+		Nota: {noop} se indica antes del password real para indicar que está en texto plano (no encriptado)  
+	-->
+	<authentication-manager>
+		<authentication-provider>
+			<user-service>
+				<user name="jose" password="{noop}jose123" authorities="EDITOR" />
+				<user name="lola" password="{noop}lola123" authorities="GERENTE" />
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
+	
+</b:beans>

@@ -15,7 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,10 +52,17 @@ public class HomeController {
 	// Redirecciones a Página Webs.
 	public static final String VISTAHOME = "home";
 	public static final String VISTADETALLE = "detalle";
-
+	public static final String PAGINALOGIN = "/admin/formLogin";
 	
 	// Variable global para permitir dar formato a las fechas
 	private static final SimpleDateFormat FORMATOFECHAS = new SimpleDateFormat("dd-MM-yyyy");
+	
+	
+	@GetMapping(value = "/login")
+	public String mostrarLogin() {	
+		LOGGER.info("Se proceder a renderizar la página de login");
+		return PAGINALOGIN;
+	}
 	
 	/* 
 	 * @RequestMapping(value = "/home", method = RequestMethod.GET) public String
