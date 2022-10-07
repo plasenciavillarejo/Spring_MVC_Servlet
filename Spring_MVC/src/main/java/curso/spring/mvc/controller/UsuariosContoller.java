@@ -59,7 +59,7 @@ public class UsuariosContoller {
 	
 	@PostMapping(value = "/guardarUsuario")
 	public String guardarUsuario(@Validated @ModelAttribute("usuario") Usuario usuario,@RequestParam("perfil") String perfil,
-			@RequestParam("check") String check,RedirectAttributes flashAttributes, Perfil perfiles, BindingResult result) {
+			@RequestParam(value="check",required = false) String check,RedirectAttributes flashAttributes, Perfil perfiles, BindingResult result) {
 		
 		if(result.hasErrors()) {
 			LOGGER.info("Contiene errores");
