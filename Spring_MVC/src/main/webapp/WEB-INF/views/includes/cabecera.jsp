@@ -22,6 +22,7 @@
 <spring:url value="/noticias/create" var="noticias"/>
 <spring:url value="/admin/logout" var="logout"/>
 <spring:url value="/login" var="loging"/>
+<spring:url value="/usuarios/crear" var="crear"/>
 
 
 <!-- Añadimos la url para acceder a la carpeta resources donde se ubican los archivos estáticos. -->
@@ -69,6 +70,7 @@
 					<sec:authorize access="isAnonymous()">
 						<li><a href="#">Acerca</a></li>
 						<li><a href="${login}">Login</a></li>
+						<li><a href="${crear}">Crear un Usuario</a></li>
 					</sec:authorize>
 				</ul>
 				

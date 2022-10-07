@@ -49,7 +49,7 @@ public class Pelicula implements Serializable {
 	/* Le indicamos el atributo que se encuentra declarado en la Clase de Horarios -> Private Pelicula pelicula
 	 	Le indicamos el método EAGER, para cada vez que consultemos un registro de tipo pelicula queremos se ejecute una consulta en la tabla horarios
 			para que se traiga todos los horarios que pertenezca a esa pelicula. */
-	@OneToMany(mappedBy = "pelicula", fetch = FetchType.EAGER, cascade = CascadeType.ALL) 
+	@OneToMany(mappedBy = "pelicula", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Horario> horario;
 	
 	public Pelicula() {

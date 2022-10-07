@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.protobuf.MapEntry;
+
 import curso.spring.mvc.model.Pelicula;
 
 public class Utileria {
@@ -186,14 +188,25 @@ public class Utileria {
 	}
 	
 	
-	public static Page<Pelicula> paginador(int pagina, boolean primera, boolean ultima){
-	
-		
-		
-		return null;
+	public static Map<String,String> listarPerfiles(){
+		Map<String, String> perfiles = new HashMap<>();
+			perfiles.put("EDITOR", "EDITOR");
+			perfiles.put("GERENTE", "GERENTE");
+		return perfiles;
 	}
 	
-	
+	public static boolean comprobarUsuarioActivo(String check){
+		
+		Map<String, Integer> listaActivos = new HashMap<>();
+		listaActivos.put("Activo", 1);
+		
+		for(Map.Entry<String, Integer> lista: listaActivos.entrySet() ) {
+			if(lista.getKey().equalsIgnoreCase(check)) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	
 }

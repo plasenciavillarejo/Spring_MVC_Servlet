@@ -18,7 +18,9 @@
 		<intercept-url pattern="/contacto/*" access="hasAnyAuthority('EDITOR','GERENTE')" />
 		<intercept-url pattern="/" access="hasAnyAuthority('EDITOR','GERENTE')" />
 		<intercept-url pattern="/banners/*" access="hasAnyAuthority('GERENTE')" />
-	
+		<intercept-url pattern="/home" access="hasAnyAuthority('EDITOR','GERENTE')" />
+<!-- 	<intercept-url pattern="/usuarios/*" access="hasAnyAuthority('EDITOR','GERENTE')" /> -->
+		
 		<!-- 2.- Indicamos nuestra página de inicio de login personalizada. 
 			2.1.- login-page: Se le indica el método del controlador "HomesController.java" encargado de rederigir la página de login. 
 					Se accede a el mediante: 
@@ -36,11 +38,12 @@
 	
 	</http>
 	
-	<!-- 3.- El autenticahtion-manager es una forma de indicarle a spring-security de donde va a recuperar los usuarios y contraseñas que van a tener acceso a la aplicación.
+	<!-- 3.- DECLARACÓN DE USUARIOS EN MEMORIA.
+		El autenticahtion-manager es una forma de indicarle a spring-security de donde va a recuperar los usuarios y contraseñas que van a tener acceso a la aplicación.
 		En este momento se le está declarando dos usuario en la memoría. 
 		
 		Nota: {noop} se indica antes del password real para indicar que está en texto plano (no encriptado)  
-	-->
+	
 	<authentication-manager>
 		<authentication-provider>
 			<user-service>
@@ -49,5 +52,43 @@
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>
+	-->
+	
+	<!-- 4.- AUTENTICACION DE LOS USUARIOS DESDE UNA BBDD - POR DEFECTO (Users, Authorities).
+		Configuramos el authentication-manager para recuperar los usuario desde BBDD y no hacerlo desde memoría como estabamos haciendo anteriormente (Paso 3.) 
+		 Solo con está configuración nos bastará para poder hacer login contra los usuarios que hay en BBDD-->
+	<!--  
+	<authentication-manager>
+		<authentication-provider>
+	-->
+		<!-- La variable "dataSource" es la que está indicada en el fichero root-context.xml: (bean del datasource) 
+				a) <bean id="dataSource" ../>
+			Si creamos un esquema especial con diferentes campos podemos recupearlos indicando la siguientes querys.	 
+		-->
+	<!--
+			<jdbc-user-service data-source-ref="dataSource"/>
+		</authentication-provider>
+	</authentication-manager>
+	-->
+	
+	<!-- 5.- AUTENTICACION DE LOS USUARIOS DESDE UNA BBDD - DE FORMA PERSONALIZADA. (Usuarios, Perfiles)-->
+	<authentication-manager>
+		<authentication-provider>
+			<!-- La variable "dataSource" es la que está indicada en el fichero root-context.xml: 
+				(bean del datasource) a) <bean id="dataSource" ../> Si creamos un esquema 
+				especial con diferentes campos podemos recupearlos indicando la siguientes 
+				querys. -->
+			<jdbc-user-service data-source-ref="dataSource" 
+				users-by-username-query="select cuenta,pwd,activo from Usuarios where cuenta = ? "
+				authorities-by-username-query="select cuenta,perfil from Perfiles where cuenta = ? " />
+			
+			<!-- Se llama al password-encoder creado más abajo en el bean -->
+			<password-encoder ref="passwordEncoder"/>
+		</authentication-provider>
+	</authentication-manager>
+	
+	<!-- 6.- Se añade BCrypPasswordEncode para encriptar las contraseñas -->
+	<b:bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	
 	
 </b:beans>

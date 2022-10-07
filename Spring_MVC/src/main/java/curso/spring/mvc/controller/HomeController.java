@@ -105,7 +105,6 @@ public class HomeController {
 		// Solo mostramos las peliculas filtras por fecha
 		List<Pelicula> peliculasPorFecha = new ArrayList<>();
 		List<Horario> buscarHorarios = horarioService.listarHorarios();
-		List<Pelicula> contarPeliculas = new ArrayList<>();
 		
 		for (Pelicula peli : peliculas) {
 			for (Horario hora : buscarHorarios) {
