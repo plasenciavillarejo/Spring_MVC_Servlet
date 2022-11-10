@@ -63,13 +63,26 @@
 	<!-- 6.- Configuración de los mensajes para evitar el siguiente error 
 		 No message found under code 'pelicula.titulo' for locale 'es_ES'.] con causa raíz
 	-->
-
-	<bean id="messageSource"
-		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		<property name="basename" value="/WEB-INF/messages" />
+	<!-- 
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="/WEB-INF/messages/messages" />
 	</bean>
-
- 
+	
+	
+	<bean id="localeResolver"
+      class="org.springframework.web.servlet.i18n.SessionLocaleResolver" >
+      	<property name="defaultLocale" value="es_ES"></property>
+     </bean>
+	-->
+ 	 
+ 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+ 		<property name="basenames">
+ 			<list>
+ 				<value>messages</value>
+ 			</list>
+ 		</property>
+ 	</bean>
+ 	 
 	<mvc:annotation-driven>
 		<mvc:argument-resolvers>
 			<bean

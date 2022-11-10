@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
-	<Appenders>
+
+	<Properties>
+		<Property name="basePath">/Users/joseplasenciavillarejo/Desktop</Property>
+	</Properties>
+
+
+	<Appenders>	
+	
+	<!-- Log diario. -->
+		<RollingFile name="fileLogger"
+			fileName="${basePath}/logPruebas.log"
+			filePattern="${basePath}/logPruebas-%d{yyyy-MM-dd}.log">
+			<PatternLayout>
+				<pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+				</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+				<SizeBasedTriggeringPolicy size="10MB" />
+			</Policies>
+			<!-- Max 5 files will be created everyday -->
+			<DefaultRolloverStrategy max="5">
+				<Delete basePath="${basePathr}" maxDepth="5">
+					<!-- Delete all files older than 5 days -->
+					<IfLastModified age="5d" />
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingFile>
+	
+	
+	
 		<Console name="Console" target="SYSTEM_OUT">
 			<PatternLayout
 				pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
 		</Console>
 	</Appenders>
+	
+	
+	
 	<Loggers>
 		<Root level="info">
 			<AppenderRef ref="Console" />
+			<AppenderRef ref="fileLogger" />
 		</Root>
 	</Loggers>
 </Configuration>

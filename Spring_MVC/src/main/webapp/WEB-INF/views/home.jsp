@@ -35,6 +35,10 @@
 
 	<div class="container theme-showcase" role="main">
 
+
+<!--  	spring:message code="pelicula.titulo" -->
+	
+	
       <!-- Carousel -->
       <!-- ######## -->
       <c:if test="${vistaPrincipal == 'Si'}">
