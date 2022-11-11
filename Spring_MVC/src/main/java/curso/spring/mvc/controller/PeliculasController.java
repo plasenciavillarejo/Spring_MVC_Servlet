@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.data.domain.Page;
@@ -90,7 +91,11 @@ public class PeliculasController {
 	// Lista con paginador.
 	@GetMapping(value = "/listarPeliculas")
 	public String mostrarIndex(Model model, Pageable page) {
-			
+		
+		LOGGER.info("Se procede a listar las pelicuals");
+		LOGGER.debug("prueba debug");
+		LOGGER.error("prueba error");
+		
 		Page<Pelicula> listarPeliculas = peliculasService.buscarTodas(page);
 				
 		
