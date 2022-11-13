@@ -56,7 +56,9 @@
 	
 	<Loggers>
 	
-		<Logger level="all" additivity="false">
+	<!-- Crea los ficheros de salida, para almacenar la informacion en ellos o bien se indica en el loger con el nombre 
+	que se le de a está instancia -> Logger name="LoggerSalida" o bien se recoge de todo el proyecto "curso.spring.mvc" -->
+		<Logger name="curso.spring.mvc" level="all" additivity="false">
 			<AppenderRef ref="Console" />
 			<AppenderRef ref="fileLogger" />
 			<AppenderRef ref="fileLogger2" />
