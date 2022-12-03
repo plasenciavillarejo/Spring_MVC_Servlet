@@ -21,7 +21,7 @@
 				<SizeBasedTriggeringPolicy size="10MB" />
 			</Policies>
 			<!-- Max 5 files will be created everyday -->
-			<DefaultRolloverStrategy max="5" />
+			<DefaultRolloverStrategy max="1" />
 		</RollingFile>
 	
 		<RollingFile name="fileLogger2"
@@ -36,7 +36,7 @@
 				<SizeBasedTriggeringPolicy size="10MB" />
 			</Policies>
 			<!-- Max 5 files will be created everyday -->
-			<DefaultRolloverStrategy max="5">
+			<DefaultRolloverStrategy max="1">
 				<Delete basePath="${basePathr}" maxDepth="5">
 					<!-- Delete all files older than 5 days -->
 					<IfLastModified age="5d" />

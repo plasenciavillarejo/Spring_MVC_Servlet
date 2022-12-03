@@ -34,11 +34,12 @@
 	<jsp:include page="includes/cabecera.jsp"></jsp:include>
 
 	<div class="container theme-showcase" role="main">
-
-
-<!--  	spring:message code="pelicula.titulo" -->
 	
-	
+	<!--
+	<h1>
+  		spring:message code="nombre"
+	</h1>
+	-->
       <!-- Carousel -->
       <!-- ######## -->
       <c:if test="${vistaPrincipal == 'Si'}">

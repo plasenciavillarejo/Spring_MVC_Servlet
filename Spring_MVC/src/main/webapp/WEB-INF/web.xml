@@ -17,24 +17,22 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/dispatcher-servlet.xml</param-value>
 	</init-param>
-	<load-on-startup>1</load-on-startup>
-		
-		
-		<!--  Configuración para permitir subir ficheros -->
-		<!--  ########################################## -->
-
+	<load-on-startup>2</load-on-startup>
+			
+	<!--  Configuración para permitir subir ficheros -->
+	<!--  ########################################## -->
+	
 	<!-- Formato windows 
 	<multipart-config> 
 		<location>c:\tmp</location> 
-	</multipart-config> 
-	-->
-
-		<!-- Formato Unix -->
+	</multipart-config>  -->
+	
+	<!-- Formato Unix -->
 	<multipart-config>
 		<location>/Users/joseplasenciavillarejo/Downloads/images</location>
-	</multipart-config>
-		
+	</multipart-config>	
 	</servlet>
+	
 	<servlet-mapping>
 		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>/</url-pattern>
@@ -79,17 +77,43 @@
 
 
 	<!--  ### Configuración Log4j2 ### -->
-	<!-- Referencia al fichero log4j2.xml de forma externa.-->
+	<!-- 1.- Referencia al fichero log4j2.xml de forma externa.-->
 
-
+	<!-- 
     <context-param>
         <param-name>log4jConfiguration</param-name>
-<!--          <param-value>classpath:log4j2.xml</param-value> -->
-<param-value>file:////Users/joseplasenciavillarejo/Desktop/log4j2.xml</param-value>
+        <param-value>classpath:log4j2.xml</param-value>
+		<param-value>file://Users/joseplasenciavillarejo/Desktop/log4j2.xml</param-value>
     </context-param>
-  
+   -->
     
+   <!-- 2.- Cargar log4j2 de forma manual --> 
+    <!-- Se le indica que la carga de log4j este deshabilitada de forma automatica y se crea un listener que cargará la clase 
+    <listener>
+    	<listener-class>curso.spring.mvc.config.LogContextListener</listener-class>
+    </listener>
+    
+    <context-param>
+    	<param-name>isLog4jAutoInitializationDisabled</param-name>
+    	<param-value>true</param-value>
+    </context-param>
+    -->
+    <!-- ### Fin Configuración Log4j2 ### -->
 	<!-- #################################################################################################################### -->
+	
+	<!-- ### Carga de fichero de configuración antes de el contexto de spring ### -->
+	<!-- 1.- Si deseamos inicializar alguna configuración antes de iniciar el servlet de spring podemos
+		indicarlo mediante un servlet de carga apuntando a una clase. Gracias a ello podemos inicializar variables por ejemplo
+		rutas de configuracion para log4j2, constantes, etc ... -->
+	<servlet>
+		<servlet-name>loadConfiguracion</servlet-name>
+		<servlet-class>curso.spring.mvc.config.LoadConfigurationStartUp</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	
+	<!-- ### Fin fichero de carga  -->
+	
 	
 	<!-- ### Configuración de paginas de error por defecto  -->
 	<error-page>

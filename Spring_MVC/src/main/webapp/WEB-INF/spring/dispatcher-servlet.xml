@@ -26,7 +26,19 @@
 			de realizar la busqueda de los componentes.  -->
 
 	<context:component-scan base-package="curso.spring.mvc.controller" />
-
+	
+	<!-- 2.1.- Cuando existe diferentes carpeta que contiene controladores se le puede indicar de la siguiente forma 
+		 	a) curso.spring.mvc.controller
+		 	b) curso.alertas.controller
+		 	c) curso.referencias.controller  
+	De está forma le indicamos que coja todos los controladores que empiecen dentro de los paquetes curso.....
+	
+	<context:component-scan base-package="curso" use-default-filters="false">
+		<context:include-filter expression="org.springframework.stereotype.Controller" type="annotation"/>
+	</context:component-scan>	 	
+	-->
+	
+	
 	<!-- 2.2.- Debemos de incluir el soporte para obtenes las anotaciones propias de Spring-MVC: 
 		mvc:annotation-driven -> @Controller, @RequestMapping, @RequestBody, @ResponseBody, etc. -->
 	
@@ -61,27 +73,42 @@
 	class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
 
 	<!-- 6.- Configuración de los mensajes para evitar el siguiente error 
-		 No message found under code 'pelicula.titulo' for locale 'es_ES'.] con causa raíz
-	-->
-	<!-- 
-	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		<property name="basename" value="/WEB-INF/messages/messages" />
+		 No message found under code 'pelicula.titulo' for locale 'es_ES'.] con causa raíz -->
+	
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="/WEB-INF/messages/Messages" />
+		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
-	
-	
+
 	<bean id="localeResolver"
-      class="org.springframework.web.servlet.i18n.SessionLocaleResolver" >
-      	<property name="defaultLocale" value="es_ES"></property>
-     </bean>
-	-->
+		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<property name="defaultLocale" value="es" />
+		<property name="cookieName" value="locale"></property>
+		<property name="cookieMaxAge" value="3600"></property>
+	</bean>
+
+	<!-- 1.- Interceptores que se encarga de validar antes/despues de realizar una acción dentro de un controlador -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/peliculas/**"/>
+				<bean class="curso.spring.mvc.interceptors.Interceptor"/>
+		</mvc:interceptor>
+		
+		
+		<!--  
+		<mvc:interceptor>
+			<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+				<property name="paramName" value="locale" />
+			</bean>
+		</mvc:interceptor>
+		-->		
+		
+		
+	</mvc:interceptors>
+	 
+	<!-- ### Fin configuración Messages.properties ### -->
  	 
- 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
- 		<property name="basenames">
- 			<list>
- 				<value>messages</value>
- 			</list>
- 		</property>
- 	</bean>
  	 
 	<mvc:annotation-driven>
 		<mvc:argument-resolvers>

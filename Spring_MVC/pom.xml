@@ -57,6 +57,13 @@
 			<version>${log4j2.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-web</artifactId>
+			<version>${log4j2.version}</version>
+		</dependency>
+
+
 		<!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
 		<dependency>
 			<groupId>javax.validation</groupId>
@@ -118,6 +125,12 @@
 			<version>5.7.3</version>
 		</dependency>
 
+<dependency>
+    <groupId>org.springframework.ws</groupId>
+    <artifactId>spring-ws</artifactId>
+    <version>3.1.4</version>
+    <type>pom</type>
+</dependency>
 
 	</dependencies>
 
