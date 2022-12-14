@@ -110,10 +110,13 @@
 		<servlet-class>curso.spring.mvc.config.LoadConfigurationStartUp</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-	
-	
+
 	<!-- ### Fin fichero de carga  -->
 	
+
+
+
+
 	
 	<!-- ### Configuración de paginas de error por defecto  -->
 	<error-page>

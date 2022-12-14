@@ -15,13 +15,17 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.protobuf.MapEntry;
 
 import curso.spring.mvc.model.Pelicula;
 
+@Component(value = "utileria")
 public class Utileria {
 
 	/*

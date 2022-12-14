@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -33,6 +34,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import curso.spring.mvc.model.Detalle;
 import curso.spring.mvc.model.Pelicula;
 import curso.spring.mvc.service.IDetalleService;
+import curso.spring.mvc.service.IEjemploUtileriaService;
 import curso.spring.mvc.service.IPeliculasService;
 import curso.spring.mvc.util.Utileria;
 import curso.spring.mvc.validator.PeliculasValidator;
@@ -47,6 +49,9 @@ public class PeliculasController {
 	
 	@Autowired
 	private IDetalleService detalleService;
+	
+	@Autowired
+	private IEjemploUtileriaService utileria;
 	
 	// Ubicacion donde se envia al usuario a consultar las páginas JSP.
 	public static final String FORMPELICULA = "peliculas/formPelicula";
@@ -117,7 +122,7 @@ public class PeliculasController {
 	public String crear(@ModelAttribute("pelicula") Pelicula pelicula, Model model) {
 
 		// Buscamos los valores para mostrar en la vista
-		Map<String, String> clasificaciones = Utileria.listarClasificaciones();
+		Map<String, String> clasificaciones = utileria.listarClasificaciones();
 		Map<String, String> estatus = Utileria.listarEstatus();
 
 		// Pasamos los valores a la vista.
