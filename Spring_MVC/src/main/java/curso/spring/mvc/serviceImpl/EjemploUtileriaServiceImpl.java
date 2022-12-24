@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import curso.spring.mvc.service.IEjemploUtileriaService;
 
 @Service
-public class IEjemploUtileriaServiceImpl implements IEjemploUtileriaService {
+public class EjemploUtileriaServiceImpl implements IEjemploUtileriaService {
 
 	@Override
 	public Map<String, String> listarClasificaciones() {

@@ -18,8 +18,12 @@
 	
 	<!-- 2.- Spring al arrancar la aplicación va a escanear automaticamente todas las clases que estén dentro de este paquete y automaticamente todas las clases 
 		que contenga la anotacíon @Service va a crear una nueva instancia. -->
-	<context:component-scan base-package="curso.spring.mvc.serviceImpl" />
-
+	<!--  <context:component-scan base-package="curso.spring.mvc.serviceImpl" /> -->
+	<context:component-scan base-package="curso">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+	</context:component-scan>
+	
+	
 	<!-- 3.- Le indicamos donde vamos a almacenar los DAO -->
 	<jpa:repositories base-package="curso.spring.mvc.dao"/>
 

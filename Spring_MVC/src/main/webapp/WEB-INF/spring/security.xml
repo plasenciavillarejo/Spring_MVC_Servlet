@@ -38,7 +38,8 @@
 	
 	</http>
 	
-	<!-- 3.- DECLARACÓN DE USUARIOS EN MEMORIA.
+	<!-- 
+	3.- DECLARACÓN DE USUARIOS EN MEMORIA.
 		El autenticahtion-manager es una forma de indicarle a spring-security de donde va a recuperar los usuarios y contraseñas que van a tener acceso a la aplicación.
 		En este momento se le está declarando dos usuario en la memoría. 
 		
@@ -52,20 +53,19 @@
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>
-	-->
 	
-	<!-- 4.- AUTENTICACION DE LOS USUARIOS DESDE UNA BBDD - POR DEFECTO (Users, Authorities).
+	
+	4.- AUTENTICACION DE LOS USUARIOS DESDE UNA BBDD - POR DEFECTO (Users, Authorities).
 		Configuramos el authentication-manager para recuperar los usuario desde BBDD y no hacerlo desde memoría como estabamos haciendo anteriormente (Paso 3.) 
-		 Solo con está configuración nos bastará para poder hacer login contra los usuarios que hay en BBDD-->
-	<!--  
+		 Solo con está configuración nos bastará para poder hacer login contra los usuarios que hay en BBDD
+	  
 	<authentication-manager>
 		<authentication-provider>
-	-->
-		<!-- La variable "dataSource" es la que está indicada en el fichero root-context.xml: (bean del datasource) 
+	
+		  La variable "dataSource" es la que está indicada en el fichero root-context.xml: (bean del datasource) 
 				a) <bean id="dataSource" ../>
 			Si creamos un esquema especial con diferentes campos podemos recupearlos indicando la siguientes querys.	 
-		-->
-	<!--
+
 			<jdbc-user-service data-source-ref="dataSource"/>
 		</authentication-provider>
 	</authentication-manager>

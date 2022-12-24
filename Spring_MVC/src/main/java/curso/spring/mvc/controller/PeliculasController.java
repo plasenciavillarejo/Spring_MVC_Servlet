@@ -103,6 +103,7 @@ public class PeliculasController {
 		
 		Page<Pelicula> listarPeliculas = peliculasService.buscarTodas(page);
 				
+		model.addAttribute("pru", utileria.listarClasificaciones());
 		
 		model.addAttribute("pagina", listarPeliculas.getNumber());
 		model.addAttribute("primera", listarPeliculas.isFirst());
