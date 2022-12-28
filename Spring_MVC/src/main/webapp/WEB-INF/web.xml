@@ -114,9 +114,25 @@
 	<!-- ### Fin fichero de carga  -->
 	
 
-
-
-
+	<!-- ### Inicio Filtro ### -->
+	<filter>
+		<filter-name>Filtro Seguridad Cabeceras</filter-name>
+		<filter-class>curso.spring.mvc.filters.FilterApplication</filter-class>
+		<!-- Si se quiere codificar algunos parámetros al iniciar la aplicacion se puede indicar
+		de la siguiente forma -->
+		<init-param>
+			<param-name>encodeParams</param-name>
+			<param-value>parametroUno,parametroDos</param-value>
+		</init-param>
+	</filter>
+	<!-- Este filtro ahora mismo es incompatible con el que tenemos indicando para SpringSecurity, se comenta
+	para evitar conflicto 
+	<filter-mapping>
+		<filter-name>Filtro Header</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	-->
+	<!-- ### Fin Filtro -->
 	
 	<!-- ### Configuración de paginas de error por defecto  -->
 	<error-page>
@@ -150,6 +166,6 @@
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
+	<!-- ### Fin Filter Spring Security ### -->
 
 </web-app>
