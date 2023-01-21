@@ -74,6 +74,7 @@ public class FilterApplication implements Filter{
 		String sessionId = ((HttpServletRequest) request).getSession().getId();
 		httpRespWrapper.setHeader("Set-Cookie", "JSESSIONID=" + sessionId + "path=/; Secure; HttpOnly; SameSite=Strict");
 		
+		
 		chain.doFilter(httpReqWrapper, httpRespWrapper);
 	}
 	

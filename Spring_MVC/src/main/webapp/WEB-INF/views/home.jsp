@@ -6,8 +6,6 @@
 <!-- Incluimos el tags lib propios de spring -->
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -114,6 +112,14 @@
       </c:if>
       <!-- /.carousel -->
 	<!-- ############ -->
+
+	<!-- Ejemplo de tooltip -->
+	<!-- ################## -->
+	<br/><br/>
+	<span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Disabled tooltip">
+	  <button class="btn btn-primary" style="pointer-events: none;" type="button" disabled>Disabled button</button>
+	</span>
+
 
 		<div class="row page-header">
 			<div class="col-lg-12">

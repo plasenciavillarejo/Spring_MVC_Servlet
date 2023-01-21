@@ -19,7 +19,10 @@
 		<intercept-url pattern="/" access="hasAnyAuthority('EDITOR','GERENTE')" />
 		<intercept-url pattern="/banners/*" access="hasAnyAuthority('GERENTE')" />
 		<intercept-url pattern="/home" access="hasAnyAuthority('EDITOR','GERENTE')" />
+		<intercept-url pattern="/imprimir/*" access="hasAnyAuthority('EDITOR','GERENTE')" />
 <!-- 	<intercept-url pattern="/usuarios/*" access="hasAnyAuthority('EDITOR','GERENTE')" /> -->
+		
+		<intercept-url pattern="/resources/**" access="permitAll"/>
 		
 		<!-- 2.- Indicamos nuestra página de inicio de login personalizada. 
 			2.1.- login-page: Se le indica el método del controlador "HomesController.java" encargado de rederigir la página de login. 
@@ -33,9 +36,39 @@
 				Nota: Todo es a nivel de controlador tanto el login-page como el default-target-url
 					
 		-->
-		<form-login login-page="/login"
+		
+		<form-login login-page="/login" 
 			default-target-url="/admin/mensajeBienvenida" />
-	
+		
+		<!-- 2.3.- Se le indica el máximo de sesiones permitidas por un usuario 	
+		<session-management>
+			<concurrency-control max-sessions="1"/>
+		</session-management>
+		-->
+		<!-- 2.4.- Proteccion en las cabeceras sin necesidad de incluir filtros -->
+		<!-- <headers>  -->
+			
+			<!-- Cache-Control: no-cache, no-store, max-age=0, must-revalidate Pragma: no-cache Expires: 0 -->
+			<!--  <cache-control disabled="true" /> -->
+			
+			<!-- X-Content-Type-Options: nosniff -->
+        	<!-- <content-type-options disabled="true" /> -->
+			
+			<!-- Strict-Transport-Security: max-age=31536000 ; includeSubDomains ; preload -->
+			<!-- <hsts include-subdomains="true" max-age-seconds="31536000" preload="true" /> -->
+			
+			<!-- XFrame-Options: SAMEORIGIN -->
+			<!-- <frame-options policy="SAMEORIGIN"/> -->
+			
+			<!-- X-XSS-Protection: 1; mode=block -->
+			<!-- <xss-protection block="false"/> -->
+			
+			<!-- script-src 'self' https://trustedscripts.example.com; object-src https://trustedplugins.example.com; report-uri /csp-report-endpoint/ -->
+			<!-- <content-security-policy policy-directives="script-src 'self' https://trustedscripts.example.com; 
+				object-src https://trustedplugins.example.com; report-uri /csp-report-endpoint/" /> -->
+			
+		<!-- </headers> -->
+		
 	</http>
 	
 	<!-- 
