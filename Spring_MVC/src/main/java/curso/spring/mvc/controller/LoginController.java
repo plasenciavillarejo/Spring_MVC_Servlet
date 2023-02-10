@@ -21,11 +21,11 @@ public class LoginController {
 	public static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class); 
 	
 	public static final String REDIRECCIONLOGIN = "/login";
-	public static final String REDIRECCIONPAGINAINICIAL ="/admin/index";	
-	
+	public static final String REDIRECCIONPAGINAINICIAL = "/admin/mensajeBienvenida";	
+	public static final String REDIRECCIONMAXSESSION = "/sesion/sesionExpirada";
 	
 	// Cuando nos logueamos inicialmente vamos a proceder a redirigir al usuario a una página inicial indicado por nosotros.
-	@GetMapping(value = "/mensajeBienvenida")
+	@GetMapping(value = "/index")
 	public String mostrarPaginaPrincipal(Authentication authentication) {
 		
 		// Para recuperar un usuario desde el controlador debemos hacerlo dessde la interfaz que nos proporciona Spring Security "Authentication".
@@ -66,6 +66,20 @@ public class LoginController {
 			LOGGER.error("Se ha producido un error a la hora de salir de la sesisión: " + e + " " + e.getMessage());
 		}
 		return "redirect:" + REDIRECCIONLOGIN;
+	}
+	
+	@GetMapping(value = "/sesionMaxima")
+	public String validarSesionUsuario(Authentication authentication) {
+		
+		LOGGER.info("Se ha accedido a la aplicacíon de forma recurrente, el número máximo de usuario por sesión es de 1.");
+		LOGGER.info("Se procede ha acceder con el siguiente usuario: " + authentication.getName());
+		
+		// Recuperar los roles que contiene el usuario que inicia la sesión debemos utilizar GrantedAuthority
+		List<String> listaRoles = new ArrayList<>();
+		for(GrantedAuthority roles: authentication.getAuthorities()) {
+			listaRoles.add(roles.getAuthority());
+		}
+		return REDIRECCIONMAXSESSION;
 	}
 	
 }

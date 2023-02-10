@@ -38,13 +38,15 @@
 		-->
 		
 		<form-login login-page="/login" 
-			default-target-url="/admin/mensajeBienvenida" />
+			default-target-url="/admin/index" />
 		
-		<!-- 2.3.- Se le indica el máximo de sesiones permitidas por un usuario 	
+		<!-- 2.3.- Se le indica el máximo de sesiones permitidas por un usuario 
+			 2.4.- Para llevar un control de sesión cuando se accede con varios usuarios a la vez este último puede ser
+			 rederigidio a una página donde se indica que no se puede acceder con múltiples usuairos. -->	
 		<session-management>
-			<concurrency-control max-sessions="1"/>
+			<concurrency-control max-sessions="1" expired-url="/admin/sesionMaxima"/>
 		</session-management>
-		-->
+	
 		<!-- 2.4.- Proteccion en las cabeceras sin necesidad de incluir filtros -->
 		<!-- <headers>  -->
 			

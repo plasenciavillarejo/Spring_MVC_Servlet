@@ -35,16 +35,13 @@
     <div class="container theme-showcase" role="main">
 
       <div class="jumbotron" style="text-align:center;">        
-        <h3>Administración del Sistema</h3>
+        <h3>Multiple accesos recurrentes</h3>
         
         <!-- Utilizamos la propiedad "property" que nos facilita sprinc security ya que con ella recuperara el usuario que ha accedido a la aplicación. 
         	Para recuperar el usuario debemos indicar: principal.username, por debajo es una instancia de UserDetailService de spring para obtener el usuario. -->
-        <p>Bienvenido(a) usuario: <span style="color:red;"><sec:authentication property="principal.username"/> </span></p>
+        <p>Lo sentimos el usuario <span style="color:red;"><sec:authentication property="principal.username"/> </span></p> ha accedido más de 1 vez a la aplicación.
 
-			<div style="text-align: center">
-				<a href="${urlPrincipal}" type="button" class="btn btn-primary">Acceder</a>
-			</div>
-
+		
 		</div>
 
 		<!-- FOOTER -->
