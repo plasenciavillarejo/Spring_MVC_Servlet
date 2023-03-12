@@ -17,7 +17,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/dispatcher-servlet.xml</param-value>
 	</init-param>
-	<load-on-startup>2</load-on-startup>
+	<load-on-startup>1</load-on-startup>
 			
 	<!--  Configuración para permitir subir ficheros -->
 	<!--  ########################################## -->
@@ -108,7 +108,7 @@
 	<servlet>
 		<servlet-name>loadConfiguracion</servlet-name>
 		<servlet-class>curso.spring.mvc.config.LoadConfigurationStartUp</servlet-class>
-		<load-on-startup>1</load-on-startup>
+		<load-on-startup>2</load-on-startup>
 	</servlet>
 
 	<!-- ### Fin fichero de carga  -->
@@ -133,6 +133,12 @@
 	</filter-mapping>
 	-->
 	<!-- ### Fin Filtro -->
+	
+	<!-- ### Para restringir la aplicación a un solo usuario se debe indicar un listener ### -->
+	<listener>
+		<listener-class>org.springframework.security.web.session.HttpSessionEventPublisher</listener-class>
+	</listener>
+	
 	
 	<!-- ### Configuración de paginas de error por defecto  -->
 	<error-page>
@@ -167,5 +173,12 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<!-- ### Fin Filter Spring Security ### -->
+
+	<env-entry>
+		<env-entry-name>PATH_REPO</env-entry-name>
+		<env-entry-type>java.lang.String</env-entry-type>
+		<env-entry-value>prueba_plasencia</env-entry-value>
+	</env-entry>
+
 
 </web-app>

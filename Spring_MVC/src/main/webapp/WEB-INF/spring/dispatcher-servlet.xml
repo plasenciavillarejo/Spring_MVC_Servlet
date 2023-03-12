@@ -25,7 +25,7 @@
 			Deberemos de indicarselo con -> context:component-scan y con el atributo base-package le diremos donde debe
 			de realizar la busqueda de los componentes.  -->
 
-	<context:component-scan base-package="curso.spring.mvc.controller" />
+	<context:component-scan base-package="curso.spring.mvc" />
 	
 	<!-- 2.1.- Cuando existe diferentes carpeta que contiene controladores se le puede indicar de la siguiente forma 
 		 	a) curso.spring.mvc.controller
@@ -44,7 +44,9 @@
 	
 	<mvc:annotation-driven />
 
-
+	<context:annotation-config />
+	
+	
 	<!-- 3.- Por último le deberemos de indicar un ViewResolver que es el encaragao de buscar las vistas JSP. 
 		Deberemos de configurar dos propiedas: 
 			- Prefix: Se le indica el director donde se almacenaran todas las vistas. 
@@ -118,6 +120,13 @@
 			</bean>
 		</mvc:argument-resolvers>
 	</mvc:annotation-driven>
+ 
+ 	<!-- ### Carga propiedades de el fichero web.xml ### -->
+
+	<context:property-placeholder/>
+
+ 
+ 
  
 	
 </beans>
